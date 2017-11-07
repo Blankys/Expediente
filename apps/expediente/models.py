@@ -26,35 +26,35 @@ class Persona(models.Model):
     telefonoMovil = models.CharField(max_length=15)
     correoElectronico = models.EmailField()
 
-class Empleado
+class Empleado(models.Model):
     idEmpleado = models.AutoField (primary_key= True)
     fechaIngreso = models.DateField()
     tiempoServicio = models.IntegerField()
     jVPM = models.IntegerField()
 
-class EspecialidadEmpleado
+class EspecialidadEmpleado(models.Model):
     idEspecialidadEmpleado = models.AutoField (primary_key= True)
     tipoEspecialidad = models.CharField(max_length=50)
     descripcionEspecialidad = models.TextField(max_length=100)
 
-class Usuario
+class Usuario(models.Model):
     idUsuario = models.AutoField (primary_key= True)
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
 
-class Turno
+class Turno(models.Model):
    idTurno = models.AutoField (primary_key= True)
    fechaInicio = models.DateField()
    horaInicio = models.DateTimeField()
    fechaFin = models.DateField()
    horaFin = models.DateTimeField()
 
-class Rol
+class Rol(models.Model):
     idRol = models.AutoField (primary_key= True)
     nombreRol = models.CharField(max_length=10)
     
 #clases que conforman el expediente del paciente-----
-class Paciente(Persona):
+class Paciente(models.Model):
     SANGRE = (
         ('A+', 'Tipo A+'),
         ('B+', 'Tipo B+'),
@@ -63,12 +63,14 @@ class Paciente(Persona):
         ('A-', 'Tipo A-'),
         ('B-', 'Tipo B-'),
         ('AB-', 'Tipo AB-'),
-        ('O-', 'Tipo O-'),)
+        ('O-', 'Tipo O-'),
+    )
 
-        ESTADO= (
+    ESTADO= (
         ('S', 'Soltero/a'),
         ('C', 'Casado/a'),
-        ('V', 'Divorciado/a'),)
+        ('V', 'Divorciado/a'),
+    )
 
     idPaciente = models.AutoField (primary_key= True)
     tipoSangre = models.CharField(max_length=3, choices=SANGRE)
@@ -77,7 +79,7 @@ class Paciente(Persona):
     ocupacion = models.CharField(max_length=50)
     #edad se calcula
 
-class Archivero(models.Model)
+class Archivero(models.Model):
     idArchivero = models.AutoField (primary_key= True)
     empleado = models.ForeignKey(Empleado)
 
@@ -111,7 +113,7 @@ class SignoVital(models.Model):
     peso = models.FloatField()
     altura = models.FloatField()
     fechaMedicion = models.DateField()
-    notas = model.TextField(max_length= 50)
+    notas = models.TextField(max_length= 50)
     expediente = models.ForeignKey(Expediente)
 
 class AntecedenteFamiliar(models.Model):
