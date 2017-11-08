@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'expedienteDB',
         'USER': 'postgres',
         'PASSWORD': 'expediente',
-        'HOST': 'localhost', 
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
