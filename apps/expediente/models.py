@@ -42,24 +42,13 @@ class Empleado(models.Model):
     persona = models.OneToOneField(Persona, to_field = 'idPersona', null = False, blank = False, on_delete = models.CASCADE)
     especialidadEmpleado = models.ForeignKey(EspecialidadEmpleado, to_field = 'idEspecialidadEmpleado', null = True, blank = True, on_delete = models.CASCADE)
 
-class Rol(models.Model):
-    idRol = models.AutoField(primary_key = True, unique = True)
-    nombreRol = models.CharField(max_length = 10)
-
-class Usuario(models.Model):
-    idUsuario = models.AutoField(primary_key = True, unique = True)
-    username = models.CharField(max_length = 20)
-    password = models.CharField(max_length = 20)
-    empleado = models.OneToOneField(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
-    rol = models.ForeignKey(Rol, to_field = 'idRol', null = False, blank = False, on_delete = models.CASCADE)
-
 class Turno(models.Model):
    idTurno = models.AutoField(primary_key = True, unique = True)
    fechaInicio = models.DateField()
    horaInicio = models.DateTimeField()
    fechaFin = models.DateField()
    horaFin = models.DateTimeField()
-   usuario = models.ForeignKey(Usuario, to_field = 'idUsuario', null = False, blank = False, on_delete = models.CASCADE)
+   # pendiente de relacionar con auth_user
 
 #clases que conforman el expediente del paciente-----
 class Paciente(models.Model):

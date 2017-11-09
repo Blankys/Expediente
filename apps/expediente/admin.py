@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.expediente.models import AntecedenteFamiliar, Archivero, CatalogoAlergia, CatalogoDepartamento, CatalogoEnfermedad, CatalogoMedicamento, CatalogoMunicipio, CatalogoTipoExamen, ConstanciaMedica, Consulta, Direccion, Empleado, EspecialidadEmpleado, Expediente, IncapacidadMedica, OrdenExamenMedico, Paciente, Persona, RecetaMedica, RecetaMedicamento, ReferenciaMedica, ResultadoExamen, Rol, SignoVital, Turno, Usuario, ContactoEmergencia
+from apps.expediente.models import AntecedenteFamiliar, Archivero, CatalogoAlergia, CatalogoDepartamento, CatalogoEnfermedad, CatalogoMedicamento, CatalogoMunicipio, CatalogoTipoExamen, ConstanciaMedica, Consulta, Direccion, Empleado, EspecialidadEmpleado, Expediente, IncapacidadMedica, OrdenExamenMedico, Paciente, Persona, RecetaMedica, RecetaMedicamento, ReferenciaMedica, ResultadoExamen, SignoVital, Turno, ContactoEmergencia
 
 admin.site.register(AntecedenteFamiliar)
 admin.site.register(Archivero)
@@ -23,8 +23,6 @@ admin.site.register(RecetaMedica)
 admin.site.register(RecetaMedicamento)
 admin.site.register(ReferenciaMedica)
 admin.site.register(ResultadoExamen)
-admin.site.register(Rol)
 admin.site.register(SignoVital)
 admin.site.register(Turno)
-admin.site.register(Usuario)
 admin.site.register(ContactoEmergencia)
