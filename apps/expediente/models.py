@@ -50,7 +50,7 @@ class Usuario(models.Model):
     idUsuario = models.AutoField(primary_key = True, unique = True)
     username = models.CharField(max_length = 20)
     password = models.CharField(max_length = 20)
-    Empleado = models.OneToOneField(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
+    empleado = models.OneToOneField(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
     rol = models.ForeignKey(Rol, to_field = 'idRol', null = False, blank = False, on_delete = models.CASCADE)
 
 class Turno(models.Model):
@@ -108,7 +108,7 @@ class SignoVital(models.Model):
     altura = models.FloatField()
     fechaMedicion = models.DateField()
     notas = models.TextField(max_length = 50)
-    empleado = models.ForeignKey(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
+    enfermera = models.ForeignKey(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
 
 class Expediente(models.Model):
     idExpediente = models.AutoField(primary_key = True, unique = True)
@@ -186,10 +186,10 @@ class ReferenciaMedica(models.Model):
     institucionRemitida = models.CharField(max_length = 50)
     hallazgosMedicos = models.TextField()
     impresionDiagnostica = models.TextField()
+    doctorReferenciado = models.CharField(max_length = 50, null = False, blank = False)
     motivoReferencia = models.TextField()
     fechaEmisionRef = models.DateField()
     consulta = models.ForeignKey(Consulta, to_field = 'idConsulta', null = False, blank = False, on_delete = models.CASCADE)
-    doctorRemitido = models.ForeignKey(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
 
 class RecetaMedica(models.Model):
     idRecetaMedica = models.AutoField(primary_key = True, unique = True)
@@ -229,4 +229,4 @@ class ResultadoExamen(models.Model):
     descripcionResultado = models.TextField(max_length = 100)
     expediente = models.ForeignKey(Expediente, to_field = 'idExpediente', null = False, blank = False, on_delete = models.CASCADE)
     examen = models.ForeignKey(CatalogoTipoExamen, to_field = 'idCatalogoTipoExamen', null = False, blank = False, on_delete = models.CASCADE)
-    empleado = models.ForeignKey(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
+    laboratorista = models.ForeignKey(Empleado, to_field = 'idEmpleado', null = False, blank = False, on_delete = models.CASCADE)
