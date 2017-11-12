@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	<!--token de seguridad, todos los formularios deben de llevarlo, de otro modo resultaria en un error-->
+	{% csrf_token %}
+	<!--Recibiendo el contexto enviado por la funcion de vista ver_form_registro_result_labo de la app expediente-->
+	{{form.as_p}}<!--as_p: se muestra el formulario en formato de parrafos-->
+
+	<!--pintando los widgets-->
+
+	<!--generando boton-->
+	<button type="submit">Guardar Registro</button>
+</form>
+{% endblock %}

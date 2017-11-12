@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<table>
+	<caption>LISTADO DE REGISTROS DE RESULTADOS DE EVALUACIONES
+	</caption>
+	<thead>
+		<tr>
+			<th>Fecha de Registro</th>
+			<th>Tipo de Evaluacion</th>
+			<th>Numero de Expediente de Paciente</th>
+			<th>Encargado de Registro</th>
+			<th>Descripcion de Resultados</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if listado %}<!--la variable listado contiene el contexto enviado por la funcion de vista ver_listado_reg_result_lab-->
+		{% for listado in listado %}
+		<tr>
+			<td>{{listado.fechaResultado}}</td>
+			<td>{{listado.CatalogoTipoExamen.nombreExamen}}</td>
+			<td>{{listado.Expediente.numeroArchivo}}</td>
+			<td>{{listado.Empleado.Persona.primerNombre}} {{listado.Empleado.Persona.segundoNombre}} {{listado.Empleado.Persona.primerApellido}} {{listado.Empleado.Persona.segundoApellido}}</td>
+			<td>{{listado.descripcionResultado}}</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>No Existen Registros de Resultados de Examenes de Laboratorio</h1>
+		{% endif %}
+	</tbody>
+</table>
+{% endblock %}

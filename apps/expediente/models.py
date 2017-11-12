@@ -96,6 +96,10 @@ class Expediente(models.Model):
     SignoVital = models.ForeignKey(SignoVital, null = False, blank = False, on_delete = models.CASCADE)
     Archivero = models.ForeignKey(Archivero, null = False, blank = False, on_delete = models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.numeroArchivo)#funcion para mostrar los nombres de los objetos.
+
+
 class ContactoEmergencia(Persona):
     relacion = models.CharField(max_length = 20)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
@@ -182,6 +186,9 @@ class CatalogoTipoExamen(models.Model):
     descripcionExamen = models.CharField(max_length = 50)
     costo = models.DecimalField(max_digits = 4, decimal_places = 2)
 
+    def __str__(self):
+        return '{}'.format(self.nombreExamen)#funcion para mostrar los nombres de los objetos.
+        
 class OrdenExamenMedico(models.Model):
     fechaSolicitudExamen = models.DateField()
     estadoOrden = models.CharField(max_length = 10, choices = (('Pendiente','Pendiente'),('Procesando', 'Procesando'),('Finalizado', 'Finalizado')))
