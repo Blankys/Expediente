@@ -3,21 +3,30 @@ from django.db import models
 class CatalogoDepartamento(models.Model):
     nombreDepartamento = models.CharField(max_length = 50)
 
+    def __str__(self):
+        return '{}'.format(self.nombreDepartamento)
+
 class CatalogoMunicipio(models.Model):
     nombreMunicipio  = models.CharField(max_length = 50)
     CatalogoDepartamento = models.ForeignKey(CatalogoDepartamento, null = False, blank = False, on_delete = models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.nombreMunicipio)
+
 class Persona(models.Model):
     primerNombre = models.CharField(max_length = 20)
     segundoNombre = models.CharField(max_length = 20)
-    tercerNombre = models.CharField(max_length = 20)
+    tercerNombre = models.CharField(max_length = 20, null = True, blank = True)
     primerApellido = models.CharField(max_length = 20)
     segundoApellido = models.CharField(max_length = 20)
     genero = models.CharField(max_length = 1, choices = (('F','Femenino'),('M','Masculino')))
     dui = models.CharField(max_length = 10)
-    telefonoFijo = models.CharField(max_length = 15)
-    telefonoMovil = models.CharField(max_length = 15)
-    correoElectronico = models.EmailField()
+    telefonoFijo = models.CharField(max_length = 15, null = True, blank = True)
+    telefonoMovil = models.CharField(max_length = 15, null = True, blank = True)
+    correoElectronico = models.EmailField(null = True, blank = True)
+
+    def nombreCompleto(self):
+        return '{}'.format(self.primerNombre + ' ' + self.segundoNombre + ' ' + self.primerApellido + ' ' + self.segundoApellido)
 
 class Direccion(models.Model):
     detalleDireccion = models.TextField(max_length = 100)
@@ -29,12 +38,18 @@ class CatalogoEspecialidadEmpleado(models.Model):
     tipoEspecialidad = models.CharField(max_length = 50)
     descripcionEspecialidad = models.TextField(max_length = 100)
 
+    def __str__(self):
+        return '{}'.format(self.tipoEspecialidad)
+
 class Empleado(models.Model):
     fechaIngreso = models.DateField()
     tiempoServicio = models.IntegerField()
-    jVPM = models.IntegerField()
+    jVPM = models.IntegerField(null = True, blank = True)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoEspecialidadEmpleado = models.ForeignKey(CatalogoEspecialidadEmpleado, null = True, blank = True, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.Persona.nombreCompleto())
 
 class Turno(models.Model):
    fechaInicio = models.DateField()
@@ -43,7 +58,7 @@ class Turno(models.Model):
    horaFin = models.DateTimeField()
    # pendiente de relacionar con auth_user
 
-#clases que conforman el expediente del paciente-----
+# Modelos que conforman el expediente del paciente
 class Paciente(models.Model):
     SANGRE = (
        ('A+', 'Tipo A+'),
@@ -69,6 +84,9 @@ class Paciente(models.Model):
     ocupacion = models.CharField(max_length = 50)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.Persona.nombreCompleto())
+
 class Archivero(models.Model):
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
 
@@ -76,7 +94,10 @@ class CatalogoAlergia(models.Model):
     tipo = models.CharField(max_length = 20)
     reaccion = models.CharField(max_length = 20)
     tratamiento = models.CharField(max_length = 100)
-    descripcion = models.TextField(max_length = 100)
+    descripcion = models.TextField(max_length = 100, null = True, blank = True)
+
+    def __str__(self):
+        return '{}'.format(self.tipo)
 
 class SignoVital(models.Model):
     presionArterial = models.CharField(max_length = 10)
@@ -85,7 +106,7 @@ class SignoVital(models.Model):
     peso = models.FloatField()
     altura = models.FloatField()
     fechaMedicion = models.DateField()
-    notas = models.TextField(max_length = 50)
+    notas = models.TextField(max_length = 50, null = True, blank = True)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
 
 class Expediente(models.Model):
@@ -96,37 +117,43 @@ class Expediente(models.Model):
     SignoVital = models.ForeignKey(SignoVital, null = False, blank = False, on_delete = models.CASCADE)
     Archivero = models.ForeignKey(Archivero, null = False, blank = False, on_delete = models.CASCADE)
 
+    # Función para mostrar los nombres de los objetos
     def __str__(self):
-        return '{}'.format(self.numeroArchivo)#funcion para mostrar los nombres de los objetos.
-
+        return '{}'.format(self.numeroArchivo)
 
 class ContactoEmergencia(Persona):
     relacion = models.CharField(max_length = 20)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
     Expediente = models.ForeignKey(Expediente, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.Persona.nombreCompleto())
+
 class CatalogoEnfermedad(models.Model):
     nombreEnfermedad = models.CharField(max_length = 20)
-    descripcionEnfermedad = models.TextField(max_length = 100)
+    descripcionEnfermedad = models.TextField(max_length = 100, null = True, blank = True)
+
+    def __str__(self):
+        return '{}'.format(self.nombreEnfermedad)
 
 class AntecedenteFamiliar(models.Model):
     parentesco = models.CharField(max_length = 20)
     CatalogoEnfermedad = models.ForeignKey(CatalogoEnfermedad, null = False, blank = False, on_delete = models.CASCADE)
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
 
-#clases que conforman la consulta-----
+# Modelos que conforman la consulta
 class Consulta(models.Model):
-    fechaConsulta = models.DateField
+    fechaConsulta = models.DateField()
     motivo = models.TextField(max_length = 100)
     sintomatologia = models.TextField(max_length = 200)
-    observaciones = models.TextField(max_length = 200)
+    observaciones = models.TextField(max_length = 200, null = True, blank = True)
     diagnostico = models.TextField(max_length = 200)
-    fechaProximaConsulta = models.DateField
+    fechaProximaConsulta = models.DateField(null = True, blank = True)
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoEnfermedad = models.ForeignKey(CatalogoEnfermedad, null = False, blank = False, on_delete = models.CASCADE)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
 
-#documentos a emitir en una consulta(4) -----
+# Documentos a emitir en una consulta
 class ConstanciaMedica(models.Model):
     dirigidaA = models.CharField(max_length = 100)
     motivoConstancia = models.TextField()
@@ -158,36 +185,40 @@ class IncapacidadMedica(models.Model):
 class ReferenciaMedica(models.Model):
     servicioSolicitado = models.CharField(max_length = 20)
     institucionRemitida = models.CharField(max_length = 50)
-    hallazgosMedicos = models.TextField()
-    impresionDiagnostica = models.TextField()
+    hallazgosMedicos = models.TextField(null = True, blank = True)
+    impresionDiagnostica = models.TextField(null = True, blank = True)
     doctorReferenciado = models.CharField(max_length = 50, null = False, blank = False)
-    motivoReferencia = models.TextField()
+    motivoReferencia = models.TextField(null = True, blank = True)
     fechaEmisionRef = models.DateField()
     Consulta = models.ForeignKey(Consulta, null = False, blank = False, on_delete = models.CASCADE)
 
 class RecetaMedica(models.Model):
     fechaEmisionReceta = models.DateField()
-    observacionesReceta = models.TextField(max_length = 100)
+    observacionesReceta = models.TextField(max_length = 100, null = True, blank = True)
     Consulta = models.ForeignKey(Consulta, null = False, blank = False, on_delete = models.CASCADE)
 
 class CatalogoMedicamento(models.Model):
     nombreMedicamento = models.CharField(max_length = 50)
-    modoUso = models.TextField(max_length = 100)
-    efectosSecundarios = models.TextField(max_length = 100)
+    modoUso = models.TextField(max_length = 100, null = True, blank = True)
+    efectosSecundarios = models.TextField(max_length = 100, null = True, blank = True)
+
+    def __str__(self):
+        return '{}'.format(self.nombreMedicamento)
 
 class RecetaMedicamento(models.Model):
     dosis = models.TextField(max_length = 100)
     RecetaMedica = models.ForeignKey(RecetaMedica, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoMedicamento = models.ForeignKey(CatalogoMedicamento, null = False, blank = False, on_delete = models.CASCADE)
 
-#clases para generar un examen medico
+# Modelos que conforman un examen médico
 class CatalogoTipoExamen(models.Model):
     nombreExamen = models.CharField(max_length = 20)
-    descripcionExamen = models.CharField(max_length = 50)
+    descripcionExamen = models.CharField(max_length = 50, null = True, blank = True)
     costo = models.DecimalField(max_digits = 4, decimal_places = 2)
 
+    # Función para mostrar los nombres de los objetos
     def __str__(self):
-        return '{}'.format(self.nombreExamen)#funcion para mostrar los nombres de los objetos.
+        return '{}'.format(self.nombreExamen)
         
 class OrdenExamenMedico(models.Model):
     fechaSolicitudExamen = models.DateField()
@@ -197,7 +228,7 @@ class OrdenExamenMedico(models.Model):
 
 class ResultadoExamen(models.Model):
     fechaResultado = models.DateField()
-    descripcionResultado = models.TextField(max_length = 100)
+    descripcionResultado = models.TextField(max_length = 100, null = True, blank = True)
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoTipoExamen = models.ForeignKey(CatalogoTipoExamen, null = False, blank = False, on_delete = models.CASCADE)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
