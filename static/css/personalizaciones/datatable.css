@@ -1,0 +1,23 @@
+﻿/*
+ * DATA TABLE
+ */
+
+/* correction paginate */
+li.paginate_button {
+    display: initial !important;
+    padding: 0px !important;
+}
+
+table.dataTable {
+    width: 100% !important;
+}
+
+div.dt-button-collection,
+ul.ColVis_collection {
+    z-index: 60002 !important;
+}
+
+div.dt-button-background,
+div.ColVis_collectionBackground {
+    z-index: 60001 !important;
+}
