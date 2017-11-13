@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2>Inicio</h2>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <a href="examenes/listado">
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-green set-icon">
+                    <i class="fa fa-bars"></i>
+                </span>
+                <div class="text-box" >
+                    <p class="main-text">Resultados de Examenes de Laboratorio</p>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="signos-vitales/listado">
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-brown set-icon">
+                    <i class="fa fa-rocket"></i>
+                </span>
+                <div class="text-box" >
+                    <p class="main-text">Signos Vitales</p>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+{% endblock %}

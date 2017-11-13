@@ -1,10 +1,12 @@
 from django.conf.urls import url, include
-from apps.expediente.views import index, registrarResultadoExamen, listadoExamenes
+from apps.expediente.views import index, registrarResultadoExamen, listadoExamenes, registrarSignoVital, listadoSignosVitales
 
 urlpatterns = [
     url(r'^$', index),
     url(r'^examenes/registrar$', registrarResultadoExamen, name = 'registrar_resultado_examen'),
     url(r'^examenes/listado$', listadoExamenes, name = 'listado_examenes'),
+    url(r'^signos-vitales/registrar$', registrarSignoVital, name = 'registrar_signo_vital'),
+    url(r'^signos-vitales/listado$', listadoSignosVitales, name = 'listado_signos_vitales'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
