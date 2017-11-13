@@ -18,5 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.expediente.urls',namespace="expediente"))#mediante esta sentencia permite buscar las vistas de la app expediente mediante el namespace
+    url(r'^', include('apps.expediente.urls', namespace = 'expediente'))
 ]

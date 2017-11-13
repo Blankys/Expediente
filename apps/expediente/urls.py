@@ -1,12 +1,13 @@
-from django.conf.urls import url,include
-from apps.expediente.views import index,ver_form_registro_result_labo,ver_listado_reg_result_lab #importando vistas
-
+from django.conf.urls import url, include
+from apps.expediente.views import index, registrarResultadoExamen, listadoExamenes
 
 urlpatterns = [
-    url(r'^$',index),#referenciando a la funcion de vista index del archivo views.py de la apps expediente
-    url(r'^registro$',ver_form_registro_result_labo, name='reg_result_lab'),#referenciando a la funcion de vista ver_form_registro_result_labo del archivo views.py de la apps expediente
-    url(r'^listar$',ver_listado_reg_result_lab, name='list_reg_lab'),#referenciando a la funcion de vista ver_listado_reg_result_lab del archivo views.py de la apps expediente
+    url(r'^$', index),
+    url(r'^examenes/registrar$', registrarResultadoExamen, name = 'registrar_resultado_examen'),
+    url(r'^examenes/listado$', listadoExamenes, name = 'listado_examenes'),
 ]
 
-#para acceder a la vista desde el navegador:
-#localhost:8000/url del archivo de urls de la app contenida entre los caracteres ^$
+# Para acceder a una vista, desde la barra de direcciones del navegador digitar:
+# http://localhost:8000/{url_absoluta}
+# Donde {url_absoluta} es: {url_global}/{url_app}
+# Por ejemplo: http://localhost:8000/examenes/listado
