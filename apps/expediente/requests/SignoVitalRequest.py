@@ -17,8 +17,8 @@ class SignoVitalForm(forms.ModelForm):
 		]
 
 		labels = {
-			'presionArterial': 'Presion Arterial',
-			'frecCardiaca': 'Frecuencia Cardiaca',
+			'presionArterial': 'Presión Arterial',
+			'frecCardiaca': 'Frecuencia Cardíaca',
 			'frecRespiratoria': 'Frecuencia Respiratoria',
 			'peso': 'Peso',
 			'altura': 'Altura',
@@ -28,12 +28,12 @@ class SignoVitalForm(forms.ModelForm):
 		}
 
 		widgets={
-			'presionArterial': forms.TextInput(),
-			'frecCardiaca': forms.TextInput(),
-			'frecRespiratoria': forms.TextInput(),
-			'peso': forms.NumberInput(),
-			'altura': forms.NumberInput(),
-			'fechaMedicion': forms.SelectDateWidget(),
-			'notas': forms.Textarea(),
-			'Empleado': forms.Select(),
+			'presionArterial': forms.TextInput(attrs = { 'class': 'form-control' }),
+			'frecCardiaca': forms.TextInput(attrs = { 'class': 'form-control' }),
+			'frecRespiratoria': forms.TextInput(attrs = { 'class': 'form-control' }),
+			'peso': forms.NumberInput(attrs = { 'class': 'form-control' }),
+			'altura': forms.NumberInput(attrs = { 'class': 'form-control' }),
+			'fechaMedicion': forms.DateInput(attrs = { 'class': 'form-control' }),
+			'notas': forms.Textarea(attrs = { 'class': 'form-control' }),
+			'Empleado': forms.Select(attrs = { 'class': 'form-control' }),
 		}

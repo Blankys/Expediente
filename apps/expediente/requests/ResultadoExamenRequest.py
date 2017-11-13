@@ -22,9 +22,9 @@ class ResultadoExamenForm(forms.ModelForm):
 		}
 
 		widgets={
-			'fechaResultado': forms.DateInput(),
-			'descripcionResultado': forms.TextInput(),
-			'Expediente': forms.Select(),
-			'CatalogoTipoExamen': forms.Select(),
-			'Empleado': forms.Select(),
+			'fechaResultado': forms.DateInput(attrs = { 'class': 'form-control' }),
+			'descripcionResultado': forms.TextInput(attrs = { 'class': 'form-control' }),
+			'Expediente': forms.Select(attrs = { 'class': 'form-control' }),
+			'CatalogoTipoExamen': forms.Select(attrs = { 'class': 'form-control' }),
+			'Empleado': forms.Select(attrs = { 'class': 'form-control' }),
 		}
