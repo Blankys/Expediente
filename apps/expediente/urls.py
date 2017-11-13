@@ -1,5 +1,7 @@
 from django.conf.urls import url, include
-from apps.expediente.views import index, registrarResultadoExamen, listadoExamenes, registrarSignoVital, listadoSignosVitales
+from apps.expediente.views.GeneralView import index
+from apps.expediente.views.ResultadoExamenView import registrarResultadoExamen, listadoExamenes
+from apps.expediente.views.SignoVitalView import registrarSignoVital, listadoSignosVitales
 
 urlpatterns = [
     url(r'^$', index),

@@ -1,0 +1,30 @@
+from django import forms
+from apps.expediente.models import ResultadoExamen
+
+class ResultadoExamenForm(forms.ModelForm):
+	class Meta:
+		model = ResultadoExamen
+
+		fields = [
+			'fechaResultado',
+			'descripcionResultado',
+			'Expediente',
+			'CatalogoTipoExamen',
+			'Empleado',
+		]
+
+		labels = {
+			'fechaResultado': 'Fecha',
+			'descripcionResultado': 'Descripción',
+			'Expediente': 'Número Expediente',
+			'CatalogoTipoExamen': 'Tipo de Examen',
+			'Empleado': 'Laboratorista',
+		}
+
+		widgets={
+			'fechaResultado': forms.DateInput(),
+			'descripcionResultado': forms.TextInput(),
+			'Expediente': forms.Select(),
+			'CatalogoTipoExamen': forms.Select(),
+			'Empleado': forms.Select(),
+		}
