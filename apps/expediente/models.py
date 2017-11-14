@@ -34,6 +34,9 @@ class Direccion(models.Model):
     CatalogoDepartamento = models.ForeignKey(CatalogoDepartamento, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoMunicipio = models.ForeignKey(CatalogoMunicipio, null = False, blank = False, on_delete = models.CASCADE)
 
+    def __str__(self):
+        return '{} {}, {} {}'.format(self.Persona.primerApellido, self.Persona.segundoApellido, self.Persona.primerNombre, self.Persona.segundoNombre)
+
 class CatalogoEspecialidadEmpleado(models.Model):
     tipoEspecialidad = models.CharField(max_length = 50)
     descripcionEspecialidad = models.TextField(max_length = 100)
