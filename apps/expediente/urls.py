@@ -1,8 +1,9 @@
 from django.conf.urls import url, include
 from apps.expediente.views.GeneralView import index
-from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen  # importando vistas
+from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen# importando vistas
 from apps.expediente.views.SignoVitalView import registrarSignoVital, listadoSignosVitales
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
+from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
 
 urlpatterns = [
     url(r'^$', index),  # referenciando a la funcion de vista index del archivo views/GeneralView.py de la apps expediente
@@ -14,6 +15,8 @@ urlpatterns = [
     url(r'^signos-vitales/listado$', listadoSignosVitales, name = 'listado_signos_vitales'),
     url(r'^referencia-medica/listado$',listadoReferenciaMedica, name = 'listado_referencia_medica'),
     url(r'^referencia-medica/registrar$',registrarReferenciaMedica, name = 'registrar_referencia_medica'),
+    url(r'^expediente/registrar$', registrarExpediente, name= 'registrar_expediente'),
+    url(r'^expediente/listado$', listadoExpediente, name= 'listado_expediente'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
