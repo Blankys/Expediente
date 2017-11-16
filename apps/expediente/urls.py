@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from apps.expediente.views.GeneralView import index
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen  # importando vistas
 from apps.expediente.views.SignoVitalView import registrarSignoVital, listadoSignosVitales
+from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 
 urlpatterns = [
     url(r'^$', index),  # referenciando a la funcion de vista index del archivo views/GeneralView.py de la apps expediente
@@ -11,6 +12,8 @@ urlpatterns = [
     # NOTA: a la vista de tipo TemplateView no se puede referenciar sin darle un nombre de plantilla que sera la que se encuentra en la carpeta correspondiente de plantillas de la aplicacion
     url(r'^signos-vitales/registrar$', registrarSignoVital, name = 'registrar_signo_vital'),
     url(r'^signos-vitales/listado$', listadoSignosVitales, name = 'listado_signos_vitales'),
+    url(r'^referencia-medica/listado$',listadoReferenciaMedica, name = 'listado_referencia_medica'),
+    url(r'^referencia-medica/registrar$',registrarReferenciaMedica, name = 'registrar_referencia_medica'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
