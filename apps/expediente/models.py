@@ -90,11 +90,17 @@ class Paciente(models.Model):
        ('V', 'Divorciado/a'),
     )
 
+    OCUPACION = (
+       ('Empleado Publico', 'Empleado Publico'),
+       ('Empleado Privado', 'Empleado Privado'),
+       ('Desempleado', 'Desempleado')
+    )
+
     tipoSangre = models.CharField(max_length = 3, choices = SANGRE)
     fechaNacimiento = models.DateField()
     edad = models.IntegerField()
     estadoCivil = models.CharField(max_length = 2, choices = ESTADO)
-    ocupacion = models.CharField(max_length = 50)
+    ocupacion = models.CharField(max_length = 50, choices = OCUPACION)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
     Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 

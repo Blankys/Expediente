@@ -13,6 +13,7 @@ class ExpedienteForm(forms.ModelForm):
         }
 
         widgets = {
+            'CatalogoAlergia': forms.CheckboxSelectMultiple(),
             'Paciente' : forms.HiddenInput(),
         }
 
