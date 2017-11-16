@@ -20,7 +20,7 @@ def registrarResultadoExamen(request):	# esta funcion permite ingresar los resul
 		form = ResultadoExamenForm()
 	return render(
 		request,
-		'expediente/examenes/registrar.html',
+		'expediente/examenes/resultados/registrar.html',
 		{
 			'form': form	# agregando desde la carpeta templates/expediente/registro_respuesta_examen.html y enviando el contexto
 		}
@@ -30,13 +30,13 @@ def registrarResultadoExamen(request):	# esta funcion permite ingresar los resul
 # listar
 class listadoExamenes(ListView):
 	model = ResultadoExamen
-	template_name = 'expediente/examenes/listado.html'	# indicando la plantilla a utilizar
+	template_name = 'expediente/examenes/resultados/listado.html'	# indicando la plantilla a utilizar
 
 # registro
 class respuestaRegistrarResultadoExamen(CreateView):
 	model = ResultadoExamen
 	form_class = ResultadoExamenForm	# indicando el formulario a utilizar
-	template_name = 'expediente/examenes/registrar.html'	# indicando el tipo de plantilla para el formulario
+	template_name = 'expediente/examenes/resultados/registrar.html'	# indicando el tipo de plantilla para el formulario
 	# redirigiendo con un url resolver a la vista listar registros de resultado de laboratorio mediante su namespace
 	success_url = reverse_lazy('expediente:listado_examenes')
 
@@ -45,4 +45,4 @@ class buscarResultadoExamen(TemplateView):
 	def post(self, request, *args, **kwargs):
 		buscar = request.POST['Busqueda']	# obteniendo el valor del campo de busqueda del formulario contenido en la plantilla listado_registros_resultados_labo.html
 		resultadoExamen = ResultadoExamen.objects.filter(Expediente__numeroArchivo = buscar)	# filtrando los datos mediante una FK
-		return render(request, 'expediente/examenes/buscar.html', { 'examenesEncontrados': resultadoExamen })	# enviando los resultados a el template buscar_reg_result_lab.html
+		return render(request, 'expediente/examenes/resultados/buscar.html', { 'examenesEncontrados': resultadoExamen })	# enviando los resultados a el template buscar_reg_result_lab.html

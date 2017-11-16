@@ -30,13 +30,13 @@ def registrarResultadoExamen(request):	# esta funcion permite ingresar los resul
 # listar
 class listadoTipoExamen(ListView):
 	model = CatalogoTipoExamen
-	template_name = 'expediente/examenMedico/listadoTipoExam.html'	# indicando la plantilla a utilizar
+	template_name = 'expediente/examenes/tipos/listado.html'	# indicando la plantilla a utilizar
 
 # registro
 class nuevoTipoExamen(CreateView):
 	model = CatalogoTipoExamen 
 	form_class = CatalogoTipoExamenForm	# indicando el formulario a utilizar
-	template_name = 'expediente/examenMedico/registrarTipoExamen.html'	# indicando el tipo de plantilla para el formulario
+	template_name = 'expediente/examenes/tipos/registrar.html'	# indicando el tipo de plantilla para el formulario
 	# redirigiendo con un url resolver a la vista listar registros de resultado de laboratorio mediante su namespace
 	success_url = reverse_lazy('expediente:listado_tipo_examen')
 
@@ -48,4 +48,4 @@ class nuevoTipoExamen(CreateView):
 # listar
 class listadoSolicitudExamen(ListView):
 	model =  OrdenExamenMedico
-	template_name = 'expediente/examennMedico/listOrdenExam.html'	# indicando la plantilla a utilizar
+	template_name = 'expediente/examenes/ordenes/listado.html'	# indicando la plantilla a utilizar

@@ -26,7 +26,7 @@ class Persona(models.Model):
     correoElectronico = models.EmailField(null = True, blank = True)
 
     def nombreCompleto(self):
-        return '{}'.format(self.primerNombre + ' ' + self.segundoNombre + ' ' + self.primerApellido + ' ' + self.segundoApellido)
+        return '{} {}, {} {}'.format(self.primerNombre, self.segundoNombre, self.primerApellido, self.segundoApellido)
 
 class Direccion(models.Model):
     detalleDireccion = models.TextField(max_length = 100)

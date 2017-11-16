@@ -11,7 +11,7 @@ def registrarReferenciaMedica(request):
 		return redirect('expediente:index')
 	else:
 		form = ReferenciaMedicaForm()
-	return render(request,'expediente/referencia_medica/registrar.html',{'form': form})
+	return render(request,'expediente/referencias/registrar.html',{'form': form})
 
 def listadoReferenciaMedica(request):
-	return render(request,'expediente/referencia_medica/listado.html',{'referencias_medicas': ReferenciaMedica.objects.all()})
+	return render(request,'expediente/referencias/listado.html',{'referencias_medicas': ReferenciaMedica.objects.all()})
