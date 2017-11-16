@@ -9,6 +9,7 @@
         <link href="{% static 'css/plugins/font-awesome/font-awesome.min.css' %}" rel="stylesheet" />
         <link href="{% static 'css/plugins/custom.css' %}" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+         <link  href="{% static 'css/personalizaciones/target-admin.css' %}" rel="stylesheet"/>
 		{% block css %}
 		{% endblock %}
     </head>
@@ -39,13 +40,20 @@
                         <li><a href="#"><i class="fa fa-table fa-3x"></i> Consultas</a></li>
                         <li><a href="../examenes/listado"><i class="fa fa-edit fa-3x"></i> Examenes</a></li>
                         <li>
+                            <a href="#"><i class="fa fa-list-alt fa-3x"></i> Opciones de examenes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="../examenMedico/listadoTipoExam">Tipos examen</a></li>
+                                <li><a href="#">Second Level Link</a></li>                                
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-sitemap fa-3x"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="#">Second Level Link</a></li>
                                 <li><a href="#">Second Level Link</a></li>
                                 <li><a href="#">Second Level Link<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
-                                        <li><a href="#">Third Level Link</a></li>
+                                        <li><a href="#">sdd</a></li>
                                         <li><a href="#">Third Level Link</a></li>
                                         <li><a href="#">Third Level Link</a></li>
                                     </ul>
@@ -71,6 +79,11 @@
         <script src="{% static 'js/plugins/bootstrap/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/plugins/jquery/jquery.metisMenu.js' %}"></script>
         <script src="{% static 'js/plugins/custom.js' %}"></script>
+        <script src="{% static 'js/plugins/dataTables/table/target-admin.js' %}"></script>      <!-- para tablas(victor) -->
+        <script src="{% static 'js/plugins/dataTables/table/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'js/plugins/dataTables/table/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'js/plugins/dataTables/table/footable.all.min.js' %}"></script>
+        <script src="{% static 'js/plugins/dataTables/table/DT_bootstrap.js' %}"></script>
 		{% block js %}
 		{% endblock %}
     </body>

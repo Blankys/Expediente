@@ -4,7 +4,7 @@ from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultad
 from apps.expediente.views.SignoVitalView import registrarSignoVital, listadoSignosVitales
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
-
+from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 urlpatterns = [
     url(r'^$', index),  # referenciando a la funcion de vista index del archivo views/GeneralView.py de la apps expediente
     url(r'^examenes/registrar$', respuestaRegistrarResultadoExamen.as_view(), name = 'registrar_resultado_examen'),    # referenciando a la clase de vista respuestaRegistrarResultadoExamen del archivo views/ResultadoExamenView.py de la apps expediente
@@ -17,8 +17,10 @@ urlpatterns = [
     url(r'^referencia-medica/registrar$',registrarReferenciaMedica, name = 'registrar_referencia_medica'),
     url(r'^expediente/registrar$', registrarExpediente, name= 'registrar_expediente'),
     url(r'^expediente/listado$', listadoExpediente, name= 'listado_expediente'),
+    url(r'^examenMedico/listadoTipoExam$', listadoTipoExamen.as_view(), name = 'listado_tipo_examen'),
+    url(r'^examenMedico/registrarTipoExamen$', nuevoTipoExamen.as_view(), name = 'nuevo_tipo_examen'),
+    url(r'^examenMedico/listOrdenExam$', listadoSolicitudExamen.as_view(), name = 'listado_orden_examen'), 
 ]
-
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
 # http://localhost:8000/{url_absoluta}
 # Donde {url_absoluta} es: {url_global}/{url_app}
