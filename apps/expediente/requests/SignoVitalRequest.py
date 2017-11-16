@@ -13,7 +13,8 @@ class SignoVitalForm(forms.ModelForm):
 			'altura',
 			'fechaMedicion',
 			'notas',
-			'Empleado'
+			'Empleado',
+			'Expediente'
 		]
 
 		labels = {
@@ -24,7 +25,8 @@ class SignoVitalForm(forms.ModelForm):
 			'altura': 'Altura',
 			'fechaMedicion': 'Fecha',
 			'notas': 'Notas',
-			'Empleado': 'Enfermera'
+			'Empleado': 'Enfermera',
+			'Expediente': 'Expediente'
 		}
 
 		widgets={
@@ -36,4 +38,5 @@ class SignoVitalForm(forms.ModelForm):
 			'fechaMedicion': forms.DateInput(attrs = { 'class': 'form-control' }),
 			'notas': forms.Textarea(attrs = { 'class': 'form-control' }),
 			'Empleado': forms.Select(attrs = { 'class': 'form-control' }),
+			'Expediente': forms.Select(attrs = { 'class': 'form-control' }),
 		}

@@ -9,7 +9,6 @@ class ExpedienteForm(forms.ModelForm):
 
         labels = {
             'fechaElaboracion' : 'Fecha de Elaboración',
-            'numeroArchivo' : 'No. Archivo',
             'CatalogoAlergia' : 'Alergia',
         }
 

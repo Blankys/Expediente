@@ -13,6 +13,11 @@ class CatalogoMunicipio(models.Model):
     def __str__(self):
         return '{}'.format(self.nombreMunicipio)
 
+class Direccion(models.Model):
+    detalleDireccion = models.TextField(max_length = 100)
+    CatalogoDepartamento = models.ForeignKey(CatalogoDepartamento, null = False, blank = False, on_delete = models.CASCADE)
+    CatalogoMunicipio = models.ForeignKey(CatalogoMunicipio, null = False, blank = False, on_delete = models.CASCADE)
+
 class Persona(models.Model):
     primerNombre = models.CharField(max_length = 20)
     segundoNombre = models.CharField(max_length = 20)
@@ -24,18 +29,22 @@ class Persona(models.Model):
     telefonoFijo = models.CharField(max_length = 15, null = True, blank = True)
     telefonoMovil = models.CharField(max_length = 15, null = True, blank = True)
     correoElectronico = models.EmailField(null = True, blank = True)
+    Direccion = models.OneToOneField(Direccion, null = False, blank = False, on_delete = models.CASCADE)
 
     def nombreCompleto(self):
         return '{} {}, {} {}'.format(self.primerNombre, self.segundoNombre, self.primerApellido, self.segundoApellido)
 
-class Direccion(models.Model):
-    detalleDireccion = models.TextField(max_length = 100)
-    Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
-    CatalogoDepartamento = models.ForeignKey(CatalogoDepartamento, null = False, blank = False, on_delete = models.CASCADE)
-    CatalogoMunicipio = models.ForeignKey(CatalogoMunicipio, null = False, blank = False, on_delete = models.CASCADE)
+class CatalogoTipoClinica(models.Model):
+    tipoClinica = models.CharField(max_length = 50)
+    descripcion = models.CharField(max_length=50, null = True, blank = True)
+
+class Clinica(models.Model):
+    nombre = models.CharField(max_length = 50)
+    CatalogoTipoClinica = models.ForeignKey(CatalogoTipoClinica, null = False, blank = False, on_delete = models.CASCADE)
+    Direccion = models.OneToOneField(Direccion, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
-        return '{} {}, {} {}'.format(self.Persona.primerApellido, self.Persona.segundoApellido, self.Persona.primerNombre, self.Persona.segundoNombre)
+        return '{}'.format(self.nombre)
 
 class CatalogoEspecialidadEmpleado(models.Model):
     tipoEspecialidad = models.CharField(max_length = 50)
@@ -50,6 +59,7 @@ class Empleado(models.Model):
     jVPM = models.IntegerField(null = True, blank = True)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoEspecialidadEmpleado = models.ForeignKey(CatalogoEspecialidadEmpleado, null = True, blank = True, on_delete = models.CASCADE)
+    Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.Persona.nombreCompleto())
@@ -86,12 +96,14 @@ class Paciente(models.Model):
     estadoCivil = models.CharField(max_length = 2, choices = ESTADO)
     ocupacion = models.CharField(max_length = 50)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
+    Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.Persona.nombreCompleto())
 
 class Archivero(models.Model):
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
+    Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 
 class CatalogoAlergia(models.Model):
     tipo = models.CharField(max_length = 20)
@@ -102,6 +114,17 @@ class CatalogoAlergia(models.Model):
     def __str__(self):
         return '{}'.format(self.tipo)
 
+class Expediente(models.Model):
+    fechaElaboracion = models.DateField()
+    Paciente = models.ForeignKey(Paciente, null = False, blank = False, on_delete = models.CASCADE)
+    CatalogoAlergia = models.ForeignKey(CatalogoAlergia, null = False, blank = False, on_delete = models.CASCADE)
+    Archivero = models.ForeignKey(Archivero, null = False, blank = False, on_delete = models.CASCADE)
+    Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
+
+    # Función para mostrar los nombres de los objetos
+    def __str__(self):
+        return '{}'.format(self.Paciente.nombreCompleto())
+
 class SignoVital(models.Model):
     presionArterial = models.CharField(max_length = 10)
     frecCardiaca = models.IntegerField()
@@ -111,18 +134,10 @@ class SignoVital(models.Model):
     fechaMedicion = models.DateField()
     notas = models.TextField(max_length = 50, null = True, blank = True)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
+    Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
 
-class Expediente(models.Model):
-    fechaElaboracion = models.DateField()
-    numeroArchivo = models.CharField(max_length = 20)
-    Paciente = models.ForeignKey(Paciente, null = False, blank = False, on_delete = models.CASCADE)
-    CatalogoAlergia = models.ForeignKey(CatalogoAlergia, null = False, blank = False, on_delete = models.CASCADE)
-    SignoVital = models.ForeignKey(SignoVital, null = False, blank = False, on_delete = models.CASCADE)
-    Archivero = models.ForeignKey(Archivero, null = False, blank = False, on_delete = models.CASCADE)
-
-    # Función para mostrar los nombres de los objetos
     def __str__(self):
-        return '{}'.format(self.numeroArchivo)
+        return '{}'.format(self.Expediente.Paciente.nombreCompleto())
 
 class ContactoEmergencia(Persona):
     relacion = models.CharField(max_length = 20)
@@ -155,6 +170,7 @@ class Consulta(models.Model):
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoEnfermedad = models.ForeignKey(CatalogoEnfermedad, null = False, blank = False, on_delete = models.CASCADE)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
+    Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 
 # Documentos a emitir en una consulta
 class ConstanciaMedica(models.Model):
@@ -222,7 +238,7 @@ class CatalogoTipoExamen(models.Model):
     # Función para mostrar los nombres de los objetos
     def __str__(self):
         return '{}'.format(self.nombreExamen)
-        
+
 class OrdenExamenMedico(models.Model):
     fechaSolicitudExamen = models.DateField()
     estadoOrden = models.CharField(max_length = 10, choices = (('Pendiente','Pendiente'),('Procesando', 'Procesando'),('Finalizado', 'Finalizado')))
