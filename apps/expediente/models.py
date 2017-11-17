@@ -158,7 +158,15 @@ class SignoVital(models.Model):
         return '{}'.format(self.Expediente.Paciente)
 
 class ContactoEmergencia(Persona):
-    relacion = models.CharField(max_length = 20)
+    PARENTESCO = (
+        ('Padre', 'Padre'),
+        ('Madre', 'Madre'),
+        ('Hijo', 'Hijo'),
+        ('Hermano', 'Hermano'),
+        ('Otro', 'Otro')
+    )
+
+    relacion = models.CharField(max_length = 20, choices= PARENTESCO)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
     Expediente = models.ForeignKey(Expediente, null=False, blank=False, on_delete=models.CASCADE)
 
@@ -269,3 +277,12 @@ class ResultadoExamen(models.Model):
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoTipoExamen = models.ForeignKey(CatalogoTipoExamen, null = False, blank = False, on_delete = models.CASCADE)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
+
+class ArchivoResultadoExamen(models.Model):
+    nombreArchivo = models.TextField(max_length=20)
+    rutaArchivo = models.TextField(max_length=50)
+    descripcionArchivo = models.TextField(max_length=50, null = True, blank= True)
+    ResultadoExamen = models.ForeignKey(ResultadoExamen, null = False, blank = False, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.nombreArchivo)
