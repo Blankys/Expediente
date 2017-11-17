@@ -48,7 +48,7 @@
             </div>
             <div class="panel-body">
                 <ul class="list">
-                    <li><a href="{% url 'expediente:inicio' %}">Listado</a></li>
+                    <li><a href="{% url 'expediente:listado_empleados' %}">Listado</a></li>
                     <li><a href="{% url 'expediente:inicio' %}">Turnos</a></li>
                 </ul>
             </div>
@@ -64,12 +64,10 @@
             <div class="panel-body">
                 <ul class="list">
                     <li><a href="{% url 'expediente:listado_tipo_examen' %}">Tipos Examenes</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Departamentos</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Municipios</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Especialidades de Empleados</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Alergias</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Enfermedades</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Medicamentos</a></li>
+                    <li><a href="{% url 'expediente:listado_especialidades_empleados' %}">Especialidades de Empleados</a></li>
+                    <li><a href="{% url 'expediente:alergia_listar' %}">Alergias</a></li>
+                    <li><a href="{% url 'expediente:listado_enfermedades' %}">Enfermedades</a></li>
+                    <li><a href="{% url 'expediente:listado_medicamentos' %}">Medicamentos</a></li>
                 </ul>
             </div>
         </div>

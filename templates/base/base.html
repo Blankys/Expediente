@@ -56,7 +56,7 @@
                         <li>
                             <a href="#"><i class="fa fa-users fa-3x"></i> Empleados<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="{% url 'expediente:inicio' %}">Listado</a></li>
+                                <li><a href="{% url 'expediente:listado_empleados' %}">Listado</a></li>
                                 <li><a href="{% url 'expediente:inicio' %}">Turnos</a></li>
                             </ul>
                         </li>
@@ -64,12 +64,10 @@
                             <a href="#"><i class="fa fa-table fa-3x"></i> Catalogos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="{% url 'expediente:listado_tipo_examen' %}">Tipos Examenes</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Departamentos</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Municipios</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Especialidades Empleados</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Alergias</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Enfermedades</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Medicamentos</a></li>
+                                <li><a href="{% url 'expediente:listado_especialidades_empleados' %}">Especialidades Empleados</a></li>
+                                <li><a href="{% url 'expediente:alergia_listar' %}">Alergias</a></li>
+                                <li><a href="{% url 'expediente:listado_enfermedades' %}">Enfermedades</a></li>
+                                <li><a href="{% url 'expediente:listado_medicamentos' %}">Medicamentos</a></li>
                             </ul>
                         </li>
                         <li><a href="#"><i class="fa fa-sign-out fa-3x"></i> Logout</a></li>

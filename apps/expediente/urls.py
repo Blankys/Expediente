@@ -6,6 +6,10 @@ from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica
 from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate, AlergiaDelete
+from apps.expediente.views.CatalogoEnfermedadView import registrarCatalogoEnfermedad, listadoCatalogoEnfermedads
+from apps.expediente.views.CatalogoEspecialidadEmpleadoView import registrarCatalogoEspecialidadEmpleado, listadoCatalogoEspecialidadEmpleados
+from apps.expediente.views.CatalogoMedicamentoView import registrarCatalogoMedicamento, listadoCatalogoMedicamentos
+from apps.expediente.views.EmpleadoView import registrarEmpleado, listadoEmpleados
 
 urlpatterns = [
     url(r'^$', index, name = 'inicio'),  # referenciando a la funcion de vista index del archivo views/GeneralView.py de la apps expediente
@@ -26,6 +30,14 @@ urlpatterns = [
     url(r'^alergias/listado', AlergiaList.as_view(), name='alergia_listar'),
     url(r'^alergias/modificar/(?P<pk>\d+)/$', AlergiaUpdate.as_view() , name='alergia_listar'),
     url(r'^alergias/eliminar/(?P<pk>\d+)/$', AlergiaDelete.as_view() , name='alergia_eliminar'),
+    url(r'^enfermedades/registrar$', registrarCatalogoEnfermedad, name = 'registrar_enfermedad'),
+    url(r'^enfermedades/listado$', listadoCatalogoEnfermedads, name = 'listado_enfermedades'),
+    url(r'^especialidades-empleados/registrar$', registrarCatalogoEspecialidadEmpleado, name = 'registrar_especialidad_empleado'),
+    url(r'^especialidades-empleados/listado$', listadoCatalogoEspecialidadEmpleados, name = 'listado_especialidades_empleados'),
+    url(r'^medicamentos/registrar$', registrarCatalogoMedicamento, name = 'registrar_medicamento'),
+    url(r'^medicamentos/listado$', listadoCatalogoMedicamentos, name = 'listado_medicamentos'),
+    url(r'^empleados/registrar$', registrarEmpleado, name = 'registrar_empleado'),
+    url(r'^empleados/listado$', listadoEmpleados, name = 'listado_empleados'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:

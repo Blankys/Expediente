@@ -8,7 +8,7 @@ def registrarSignoVital(request):
 		form = SignoVitalForm(request.POST)
 		if form.is_valid():
 			form.save()
-		return redirect('expediente:index')
+		return redirect('expediente:listado_signos_vitales')
 	else:
 		form = SignoVitalForm()
 	return render(
