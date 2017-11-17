@@ -37,6 +37,9 @@ class Persona(models.Model):
     def nombreCompleto(self):
         return '{} {}, {} {}'.format(self.primerNombre, self.segundoNombre, self.primerApellido, self.segundoApellido)
 
+    def __str__(self):
+        return '{}'.format(self.nombreCompleto())
+
 class CatalogoTipoClinica(models.Model):
     tipoClinica = models.CharField(max_length = 50)
     descripcion = models.CharField(max_length=50, null = True, blank = True)
@@ -68,7 +71,7 @@ class Empleado(models.Model):
     Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.Persona.nombreCompleto())
+        return '{}'.format(self.Persona)
 
 class Turno(models.Model):
    fechaInicio = models.DateField()
@@ -111,11 +114,14 @@ class Paciente(models.Model):
     Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.Persona.nombreCompleto())
+        return '{}'.format(self.Persona)
 
 class Archivero(models.Model):
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
     Clinica = models.ForeignKey(Clinica, null = False, blank = False, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return 'Archivero: {} - Archivista: {}'.format(self.id, self.Empleado)
 
 class CatalogoAlergia(models.Model):
     tipo = models.CharField(max_length = 20)
@@ -157,7 +163,7 @@ class ContactoEmergencia(Persona):
     Expediente = models.ForeignKey(Expediente, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.Persona.nombreCompleto())
+        return '{}'.format(self.Persona)
 
 class CatalogoEnfermedad(models.Model):
     nombreEnfermedad = models.CharField(max_length = 20)
