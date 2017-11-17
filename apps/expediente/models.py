@@ -18,6 +18,9 @@ class Direccion(models.Model):
     CatalogoDepartamento = models.ForeignKey(CatalogoDepartamento, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoMunicipio = models.ForeignKey(CatalogoMunicipio, null = False, blank = False, on_delete = models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.detalleDireccion)
+
 class Persona(models.Model):
     primerNombre = models.CharField(max_length = 20)
     segundoNombre = models.CharField(max_length = 20)
@@ -37,6 +40,9 @@ class Persona(models.Model):
 class CatalogoTipoClinica(models.Model):
     tipoClinica = models.CharField(max_length = 50)
     descripcion = models.CharField(max_length=50, null = True, blank = True)
+
+    def __str__(self):
+        return '{}'.format(self.tipoClinica)
 
 class Clinica(models.Model):
     nombre = models.CharField(max_length = 50)
@@ -129,7 +135,7 @@ class Expediente(models.Model):
 
     # Función para mostrar los nombres de los objetos
     def __str__(self):
-        return '{}'.format(self.Paciente.nombreCompleto())
+        return '{}'.format(self.Paciente)
 
 class SignoVital(models.Model):
     presionArterial = models.CharField(max_length = 10)
@@ -143,7 +149,7 @@ class SignoVital(models.Model):
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.Expediente.Paciente.nombreCompleto())
+        return '{}'.format(self.Expediente.Paciente)
 
 class ContactoEmergencia(Persona):
     relacion = models.CharField(max_length = 20)
