@@ -5,6 +5,7 @@ from apps.expediente.views.SignoVitalView import registrarSignoVital, listadoSig
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
+from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate, AlergiaDelete
 
 urlpatterns = [
     url(r'^$', index, name = 'inicio'),  # referenciando a la funcion de vista index del archivo views/GeneralView.py de la apps expediente
@@ -21,6 +22,10 @@ urlpatterns = [
     url(r'^examenes/tipos/listado$', listadoTipoExamen.as_view(), name = 'listado_tipo_examen'),
     url(r'^examenes/tipos/registrar$', nuevoTipoExamen.as_view(), name = 'nuevo_tipo_examen'),
     url(r'^examenes/ordenes/listado$', listadoSolicitudExamen.as_view(), name = 'listado_orden_examen'),
+    url(r'^alergias/registrar', AlergiaCreate.as_view(), name='alergia_crear'),
+    url(r'^alergias/listado', AlergiaList.as_view(), name='alergia_listar'),
+    url(r'^alergias/modificar/(?P<pk>\d+)/$', AlergiaUpdate.as_view() , name='alergia_listar'),
+    url(r'^alergias/eliminar/(?P<pk>\d+)/$', AlergiaDelete.as_view() , name='alergia_eliminar'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
