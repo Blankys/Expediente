@@ -42,7 +42,7 @@ class Persona(models.Model):
 
 class CatalogoTipoClinica(models.Model):
     tipoClinica = models.CharField(max_length = 50)
-    descripcion = models.CharField(max_length=50, null = True, blank = True)
+    descripcion = models.CharField(max_length = 50, null = True, blank = True)
 
     def __str__(self):
         return '{}'.format(self.tipoClinica)
@@ -166,9 +166,9 @@ class ContactoEmergencia(Persona):
         ('Otro', 'Otro')
     )
 
-    relacion = models.CharField(max_length = 20, choices= PARENTESCO)
+    relacion = models.CharField(max_length = 20, choices =  PARENTESCO)
     Persona = models.OneToOneField(Persona, null = False, blank = False, on_delete = models.CASCADE)
-    Expediente = models.ForeignKey(Expediente, null=False, blank=False, on_delete=models.CASCADE)
+    Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.Persona)
@@ -279,7 +279,11 @@ class ResultadoExamen(models.Model):
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
 
 class ArchivoResultadoExamen(models.Model):
-    idExpediente = models.ForeignKey(Expediente, null= False, blank=False,on_delete = models.CASCADE)
-    nombreResultadoEscaneado = models.TextField(max_length=100, null=False)
-    resultadoEscaneado = models.FileField(upload_to='Expediente/resultadosEscaneados', null=False)
-    fechaRegistro = models.DateField()
+    nombreArchivo = models.CharField(max_length = 20, null = False, blank =  False)
+    ubicacionArchivo = models.FileField(upload_to = 'archivos/resultados_examenes', null = False, blank =  False)
+    descripcionArchivo = models.TextField(max_length = 50, null = True, blank =  True)
+    fechaRegistro = models.DateField(null = False, blank = False)
+    ResultadoExamen = models.ForeignKey(ResultadoExamen, null = False, blank = False, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.nombreArchivo)
