@@ -5,8 +5,8 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <h1 class="page-header"><i class="fa fa-plus-square"></i> Nuevo Especialidad Empleado</h1>
         <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-home"></i> Inicio</a></li>
-            <li><a href="listado"><i class="fa fa-male"></i> Especialidades Empleados</a></li>
+            <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="{% url 'expediente:listado_especialidades_empleados' %}"><i class="fa fa-male"></i> Especialidades Empleados</a></li>
             <li><i class="fa fa-plus-square"></i> Nuevo</li>
         </ol>
     </div>
@@ -26,7 +26,7 @@
 							<button class="btn btn-primary" type="submit">
 								<i class="fa fa-floppy-o"></i> Guardar
 							</button>
-							<a href="listado" class="btn btn-danger">
+							<a href="{% url 'expediente:listado_especialidades_empleados' %}" class="btn btn-danger">
 								<i class="fa fa-times-circle"></i> Cancelar
 							</a>
 						</div>
