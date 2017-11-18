@@ -3,7 +3,7 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    <h3> Desea eliminar el registro de la alergia tipo {{ object.tipo }}</h3>
+    <h3> Desea eliminar el registro de la alergia tipo {{ CatalogoAlergia.tipo }}</h3>
     <button class = "btn btn-danger" type="submit="> si, eliminar </button>
     <a class = "btn btn-default" href="{% url 'expediente:alergia_listar' %}"> Cancelar</a>
 </form>

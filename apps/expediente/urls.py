@@ -5,7 +5,7 @@ from apps.expediente.views.SignoVitalView import registrarSignoVital, listadoSig
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
-from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate, AlergiaDelete
+from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate, alergia_delete
 from apps.expediente.views.CatalogoEnfermedadView import registrarCatalogoEnfermedad, listadoCatalogoEnfermedads
 from apps.expediente.views.CatalogoEspecialidadEmpleadoView import registrarCatalogoEspecialidadEmpleado, listadoCatalogoEspecialidadEmpleados
 from apps.expediente.views.CatalogoMedicamentoView import registrarCatalogoMedicamento, listadoCatalogoMedicamentos
@@ -28,8 +28,8 @@ urlpatterns = [
     url(r'^examenes/ordenes/listado$', listadoSolicitudExamen.as_view(), name = 'listado_orden_examen'),
     url(r'^alergias/registrar', AlergiaCreate.as_view(), name='alergia_crear'),
     url(r'^alergias/listado', AlergiaList.as_view(), name='alergia_listar'),
-    url(r'^alergias/modificar/(?P<pk>\d+)/$', AlergiaUpdate.as_view() , name='alergia_listar'),
-    url(r'^alergias/eliminar/(?P<pk>\d+)/$', AlergiaDelete.as_view() , name='alergia_eliminar'),
+    url(r'^alergias/modificar/(?P<pk>\d+)/$', AlergiaUpdate.as_view() , name='alergia_modificar'),
+    #url(r'^alergias/eliminar/(?P<id_alergia>\d+)/$', alergia_delete , name='alergia_eliminar'), no implementado debido a conflicto con modelo expediente
     url(r'^enfermedades/registrar$', registrarCatalogoEnfermedad, name = 'registrar_enfermedad'),
     url(r'^enfermedades/listado$', listadoCatalogoEnfermedads, name = 'listado_enfermedades'),
     url(r'^especialidades-empleados/registrar$', registrarCatalogoEspecialidadEmpleado, name = 'registrar_especialidad_empleado'),

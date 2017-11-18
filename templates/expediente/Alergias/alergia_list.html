@@ -34,6 +34,7 @@
 				<th>Tipo</th>
 				<th>Reacción</th>
 				<th>Tratamiento</th>
+				<th>Acciones</th>
 			</thead>
 			<tbody>
 				{% for CatalogoAlergia in object_list %} <!--para cada peresona en el contexto persona obtener la informacion-->
@@ -41,6 +42,13 @@
 					<td>{{ CatalogoAlergia.tipo }}</td>
 					<td>{{ CatalogoAlergia.reaccion }}</td>
 					<td>{{ CatalogoAlergia.tratamiento }}</td>
+					<td>
+					<a class="btn btn-primary" href="{% url 'expediente:alergia_modificar' CatalogoAlergia.id %}"
+					   >Editar</a>
+
+
+
+					</td>
 				</tr>
 				{% endfor %}
 			</tbody>
