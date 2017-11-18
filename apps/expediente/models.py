@@ -279,10 +279,7 @@ class ResultadoExamen(models.Model):
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
 
 class ArchivoResultadoExamen(models.Model):
-    nombreArchivo = models.TextField(max_length=20)
-    rutaArchivo = models.TextField(max_length=50)
-    descripcionArchivo = models.TextField(max_length=50, null = True, blank= True)
-    ResultadoExamen = models.ForeignKey(ResultadoExamen, null = False, blank = False, on_delete = models.CASCADE)
-
-    def __str__(self):
-        return '{}'.format(self.nombreArchivo)
+    idExpediente = models.ForeignKey(Expediente, null= False, blank=False,on_delete = models.CASCADE)
+    nombreResultadoEscaneado = models.TextField(max_length=100, null=False)
+    resultadoEscaneado = models.FileField(upload_to='Expediente/resultadosEscaneados', null=False)
+    fechaRegistro = models.DateField()
