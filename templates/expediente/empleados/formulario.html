@@ -20,118 +20,132 @@
 		<div class="panel-body">
 			<fieldset>
 				<legend>Datos Personales</legend>
+				{% if persona_errores %}
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="alert alert-danger">{{ persona_errores }}</div>
+					</div>
+				</div>
+				{% endif %}
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.primerNombre.name}}">{{persona.primerNombre.label}}</label>
-							{{persona.primerNombre}}
+							<label for="{{form2.primerNombre.name}}">{{form2.primerNombre.label}}</label>
+							{{form2.primerNombre}}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.segundoNombre.name}}">{{persona.segundoNombre.label}}</label>
-							{{persona.segundoNombre}}
+							<label for="{{form2.segundoNombre.name}}">{{form2.segundoNombre.label}}</label>
+							{{form2.segundoNombre}}
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.tercerNombre.name}}">{{persona.tercerNombre.label}}</label>
-							{{persona.tercerNombre}}
+							<label for="{{form2.tercerNombre.name}}">{{form2.tercerNombre.label}}</label>
+							{{form2.tercerNombre}}
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.primerApellido.name}}">{{persona.primerApellido.label}}</label>
-							{{persona.primerApellido}}
+							<label for="{{form2.primerApellido.name}}">{{form2.primerApellido.label}}</label>
+							{{form2.primerApellido}}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.segundoApellido.name}}">{{persona.segundoApellido.label}}</label>
-							{{persona.segundoApellido}}
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<div class="form-group">
-							<label for="{{persona.genero.name}}">{{persona.genero.label}}</label>
-							{{persona.genero}}
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-						<div class="form-group">
-							<label for="{{persona.dui.name}}">{{persona.dui.label}}</label>
-							{{persona.dui}}
+							<label for="{{form2.segundoApellido.name}}">{{form2.segundoApellido.label}}</label>
+							{{form2.segundoApellido}}
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.telefonoFijo.name}}">{{persona.telefonoFijo.label}}</label>
-							{{persona.telefonoFijo}}
+							<label for="{{form2.genero.name}}">{{form2.genero.label}}</label>
+							{{form2.genero}}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.telefonoMovil.name}}">{{persona.telefonoMovil.label}}</label>
-							{{persona.telefonoMovil}}
+							<label for="{{form2.dui.name}}">{{form2.dui.label}}</label>
+							{{form2.dui}}
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.correoElectronico.name}}">{{persona.correoElectronico.label}}</label>
-							{{persona.correoElectronico}}
+							<label for="{{form2.telefonoFijo.name}}">{{form2.telefonoFijo.label}}</label>
+							{{form2.telefonoFijo}}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{persona.Direccion.name}}">{{persona.Direccion.label}}</label>
-							{{persona.Direccion}}
+							<label for="{{form2.telefonoMovil.name}}">{{form2.telefonoMovil.label}}</label>
+							{{form2.telefonoMovil}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form2.correoElectronico.name}}">{{form2.correoElectronico.label}}</label>
+							{{form2.correoElectronico}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form2.Direccion.name}}">{{form2.Direccion.label}}</label>
+							{{form2.Direccion}}
 						</div>
 					</div>
 				</div>
 				<legend>Datos de Empleado</legend>
+				{% if empleado_errores %}
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="alert alert-danger">{{ empleado_errores }}</div>
+					</div>
+				</div>
+				{% endif %}
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{empleado.fechaIngreso.name}}">{{empleado.fechaIngreso.label}}</label>
-							{{empleado.fechaIngreso}}
+							<label for="{{form.fechaIngreso.name}}">{{form.fechaIngreso.label}}</label>
+							{{form.fechaIngreso}}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{empleado.tiempoServicio.name}}">{{empleado.tiempoServicio.label}}</label>
-							{{empleado.tiempoServicio}}
+							<label for="{{form.tiempoServicio.name}}">{{form.tiempoServicio.label}}</label>
+							{{form.tiempoServicio}}
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{empleado.jVPM.name}}">{{empleado.jVPM.label}}</label>
-							{{empleado.jVPM}}
+							<label for="{{form.jVPM.name}}">{{form.jVPM.label}}</label>
+							{{form.jVPM}}
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{empleado.CatalogoEspecialidadEmpleado.name}}">{{empleado.CatalogoEspecialidadEmpleado.label}}</label>
-							{{empleado.CatalogoEspecialidadEmpleado}}
+							<label for="{{form.CatalogoEspecialidadEmpleado.name}}">{{form.CatalogoEspecialidadEmpleado.label}}</label>
+							{{form.CatalogoEspecialidadEmpleado}}
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
-							<label for="{{empleado.Clinica.name}}">{{empleado.Clinica.label}}</label>
-							{{empleado.Clinica}}
+							<label for="{{form.Clinica.name}}">{{form.Clinica.label}}</label>
+							{{form.Clinica}}
 						</div>
 					</div>
 				</div>

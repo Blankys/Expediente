@@ -12,8 +12,8 @@
         <link href="{% static 'css/plugins/alertify/alertify.min.css' %}" rel="stylesheet" />
         <link href="{% static 'css/plugins/alertify/alertify.bootstrap.min.css' %}" rel="stylesheet" />
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
-		{% block css %}
-		{% endblock %}
+        {% block css %}
+        {% endblock %}
     </head>
     <body>
         <div id="wrapper">
@@ -81,7 +81,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             {% block content %}
-							{% endblock %}
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,17 @@
         <script src="{% static 'js/plugins/custom.js' %}"></script>
         <script src="{% static 'js/plugins/alertify/alertify.min.js' %}"></script>
         <script src="{% static 'js/personalizaciones/alertify.js' %}"></script>
-		{% block js %}
-		{% endblock %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                {% if mensaje_error %}
+                alertify.error("{{ mensaje_error }}");
+                {% endif %}
+                {% if mensaje_exito %}
+                alertify.success("{{ mensaje_exito }}");
+                {% endif %}
+            });
+        </script>
+        {% block js %}
+        {% endblock %}
     </body>
 </html>

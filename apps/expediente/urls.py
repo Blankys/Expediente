@@ -47,7 +47,7 @@ urlpatterns = [
     url(r'^medicamentos/eliminar/(?P<id>\d+)/$', eliminarMedicamento, name='eliminar_medicamento'),
     url(r'^empleados/agregar$', agregarEmpleado.as_view(), name = 'agregar_empleado'),
     url(r'^empleados/listado$', listadoEmpleados.as_view(), name = 'listado_empleados'),
-    url(r'^empleados/modificar/(?P<id>\d+)/$', modificarEmpleado, name = 'modificar_empleado'),
+    url(r'^empleados/modificar/(?P<pk>\d+)/$', modificarEmpleado.as_view(), name = 'modificar_empleado'),
     url(r'^empleados/eliminar/(?P<id>\d+)/$', eliminarEmpleado, name = 'eliminar_empleado'),
 ]
 
