@@ -19,7 +19,6 @@ class EmpleadoForm(forms.ModelForm):
 			'fechaIngreso': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'tiempoServicio': forms.NumberInput(attrs = { 'class': 'form-control' }),
 			'jVPM': forms.NumberInput(attrs = { 'class': 'form-control' }),
-			'Persona': forms.HiddenInput(),
 			'CatalogoEspecialidadEmpleado': forms.Select(attrs = { 'class': 'form-control' }),
 			'Clinica': forms.Select(attrs = { 'class': 'form-control' })
 		}
@@ -40,7 +39,8 @@ class PersonaForm(forms.ModelForm):
             'dui' : 'DUI',
             'telefonoFijo' : 'Teléfono Fijo',
             'telefonoMovil' : 'Teléfono Movil',
-            'correoElectronico' : 'Correo Electrónico'
+            'correoElectronico' : 'Correo Electrónico',
+			'Direccion': 'Dirección'
         }
 
 		widgets={

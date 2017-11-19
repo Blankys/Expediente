@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, CreateView, UpdateView
@@ -10,20 +10,32 @@ class listadoEmpleados(ListView):
     model = Empleado
     template_name = 'expediente/empleados/listado.html'
 
-def agregarEmpleado(request):
-	if request.method == 'POST':
-		persona_form = PersonaForm(request.POST)
-		empleado_form = EmpleadoForm(request.POST)
-		if persona_form.is_valid():
-			persona_form.save()
-		if empleado_form.is_valid():
-			empleado_form.data['Persona'] = persona_form.id
-			empleado_form.save()
-		return redirect('expediente:listado_empleados')
-	else:
-		persona_form = PersonaForm()
-		empleado_form = EmpleadoForm()
-	return render(request, 'expediente/empleados/formulario.html', {'persona': persona_form, 'empleado': empleado_form})
+class agregarEmpleado(CreateView):
+	model = Empleado
+	template_name = 'expediente/empleados/formulario.html'
+	form_class = EmpleadoForm
+	second_form_class = PersonaForm
+	success_url = reverse_lazy('expediente:listado_empleados')
+
+	def get_context_data(self, **kwargs):
+		context = super(agregarEmpleado, self).get_context_data(**kwargs)
+		if 'empleado' not in context:
+			context['empleado'] = self.form_class(self.request.GET)
+		if 'persona' not in context:
+			context['persona'] = self.second_form_class(self.request.GET)
+		return context
+
+	def post(self, request, *args, **kwargs):
+		self.object = self.get_object
+		empleado_form = self.form_class(request.POST)
+		persona_form = self.second_form_class(request.POST)
+		if empleado_form.is_valid() and persona_form.is_valid():
+			empleado = empleado_form.save(commit=False)
+			empleado.Persona = persona_form.save()
+			empleado.save()
+			return HttpResponseRedirect(self.get_success_url())
+		else:
+			return self.render_to_response(self.get_context_data(empleado=empleado_form, persona=persona_form))
 
 def modificarEmpleado(request, id):
 	empleado = Empleado.objects.get(id=id)
@@ -43,12 +55,6 @@ def modificarEmpleado(request, id):
 	return render(request, 'expediente/empleados/formulario.html', {'persona': persona_form, 'empleado': empleado_form})
 
 '''
-class agregarEmpleado(CreateView):
-	model = Empleado
-	form_class = EmpleadoForm
-	template_name = 'expediente/empleados/formulario.html'
-	success_url = reverse_lazy('expediente:listado_empleados')
-
 class modificarEmpleado(UpdateView):
 	model = Empleado
 	form_class = EmpleadoForm

@@ -12,31 +12,130 @@
     </div>
 </div>
 <form method="post" autocomplete="off">
-	<div class="row">
-		{% csrf_token %}
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Datos Personales</h3>
-				</div>
-				<div class="panel-body">
-					<fieldset>
-						{{ persona.as_p }}
-					</fieldset>
-				</div>
-			</div>
+	{% csrf_token %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Complete los datos requeridos</h3>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Datos de Empleado</h3>
+		<div class="panel-body">
+			<fieldset>
+				<legend>Datos Personales</legend>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.primerNombre.name}}">{{persona.primerNombre.label}}</label>
+							{{persona.primerNombre}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.segundoNombre.name}}">{{persona.segundoNombre.label}}</label>
+							{{persona.segundoNombre}}
+						</div>
+					</div>
 				</div>
-				<div class="panel-body">
-					<fieldset>
-						{{ empleado.as_p }}
-					</fieldset>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.tercerNombre.name}}">{{persona.tercerNombre.label}}</label>
+							{{persona.tercerNombre}}
+						</div>
+					</div>
 				</div>
-			</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.primerApellido.name}}">{{persona.primerApellido.label}}</label>
+							{{persona.primerApellido}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.segundoApellido.name}}">{{persona.segundoApellido.label}}</label>
+							{{persona.segundoApellido}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.genero.name}}">{{persona.genero.label}}</label>
+							{{persona.genero}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.dui.name}}">{{persona.dui.label}}</label>
+							{{persona.dui}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.telefonoFijo.name}}">{{persona.telefonoFijo.label}}</label>
+							{{persona.telefonoFijo}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.telefonoMovil.name}}">{{persona.telefonoMovil.label}}</label>
+							{{persona.telefonoMovil}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.correoElectronico.name}}">{{persona.correoElectronico.label}}</label>
+							{{persona.correoElectronico}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona.Direccion.name}}">{{persona.Direccion.label}}</label>
+							{{persona.Direccion}}
+						</div>
+					</div>
+				</div>
+				<legend>Datos de Empleado</legend>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{empleado.fechaIngreso.name}}">{{empleado.fechaIngreso.label}}</label>
+							{{empleado.fechaIngreso}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{empleado.tiempoServicio.name}}">{{empleado.tiempoServicio.label}}</label>
+							{{empleado.tiempoServicio}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{empleado.jVPM.name}}">{{empleado.jVPM.label}}</label>
+							{{empleado.jVPM}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{empleado.CatalogoEspecialidadEmpleado.name}}">{{empleado.CatalogoEspecialidadEmpleado.label}}</label>
+							{{empleado.CatalogoEspecialidadEmpleado}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{empleado.Clinica.name}}">{{empleado.Clinica.label}}</label>
+							{{empleado.Clinica}}
+						</div>
+					</div>
+				</div>
+			</fieldset>
 		</div>
 	</div>
 	<div class="form-group">
