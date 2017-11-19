@@ -1,29 +1,31 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import Http404
+from django.http import JsonResponse
+from django.views.generic import ListView, CreateView, UpdateView
+from django.core.urlresolvers import reverse_lazy
 from apps.expediente.requests.CatalogoEspecialidadEmpleadoRequest import CatalogoEspecialidadEmpleadoForm
 from apps.expediente.models import CatalogoEspecialidadEmpleado
 
-def registrarCatalogoEspecialidadEmpleado(request):
-	if request.method == 'POST':
-		form = CatalogoEspecialidadEmpleadoForm(request.POST)
-		if form.is_valid():
-			form.save()
-		return redirect('expediente:listado_especialidades_empleados')
-	else:
-		form = CatalogoEspecialidadEmpleadoForm()
-	return render(
-		request,
-		'expediente/especialidades-empleados/registrar.html',
-		{
-			'form': form
-		}
-	)
+class listadoEspecialidadesEmpleados(ListView):
+    model = CatalogoEspecialidadEmpleado
+    template_name = 'expediente/empleados/especialidades/listado.html'
 
-def listadoCatalogoEspecialidadEmpleados(request):
-	return render(
-		request,
-		'expediente/especialidades-empleados/listado.html',
-		{
-			'especialidades_empleados': CatalogoEspecialidadEmpleado.objects.all()
-		}
-	)
+class agregarEspecialidadEmpleado(CreateView):
+    model = CatalogoEspecialidadEmpleado
+    form_class = CatalogoEspecialidadEmpleadoForm
+    template_name = 'expediente/empleados/especialidades/formulario.html'
+    success_url = reverse_lazy('expediente:listado_especialidades_empleados')
+
+class modificarEspecialidadEmpleado(UpdateView):
+	model = CatalogoEspecialidadEmpleado
+	form_class = CatalogoEspecialidadEmpleadoForm
+	template_name = 'expediente/empleados/especialidades/formulario.html'
+	success_url = reverse_lazy('expediente:listado_especialidades_empleados')
+
+def eliminarEspecialidadEmpleado(request, id):
+	if not request.is_ajax():
+		raise Http404("Error: Solicitud denegada - Esta acción solo se puede ejecutar desde una llamada Ajax.")
+	especialidad_empleado = CatalogoEspecialidadEmpleado.objects.get(id = id)
+	if request.method == 'GET':
+		especialidad_empleado.delete()
+		return JsonResponse({'error': False, 'mensaje': 'Se eliminó la Especialidad Empleado ' + especialidad_empleado.tipoEspecialidad})
+	return JsonResponse({'error': True, 'mensaje': 'No se pudo eliminar la Especialidad Empleado ' + especialidad_empleado.tipoEspecialidad})

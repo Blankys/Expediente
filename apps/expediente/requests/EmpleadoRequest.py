@@ -49,7 +49,7 @@ class PersonaForm(forms.ModelForm):
 			'tercerNombre': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'primerApellido': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'segundoApellido': forms.TextInput(attrs = { 'class': 'form-control' }),
-			'genero': forms.TextInput(attrs = { 'class': 'form-control' }),
+			'genero': forms.Select(attrs = { 'class': 'form-control' }),
 			'dui': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'jVPM': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'telefonoFijo': forms.TextInput(attrs = { 'class': 'form-control' }),

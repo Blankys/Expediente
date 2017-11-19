@@ -1,17 +1,17 @@
 {% extends 'base/base.html' %}
-{% block title %}Nuevo Empleado{% endblock %}
+{% block title %}Registro de Empleado{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="page-header"><i class="fa fa-plus-square"></i> Nuevo Empleado</h1>
+        <h1 class="page-header"><i class="fa fa-plus-square"></i> Registro de Empleado</h1>
         <ol class="breadcrumb">
             <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
             <li><a href="{% url 'expediente:listado_empleados' %}"><i class="fa fa-user"></i> Empleados</a></li>
-            <li><i class="fa fa-plus-square"></i> Nuevo</li>
+            <li><i class="fa fa-file-text-o"></i> Datos</li>
         </ol>
     </div>
 </div>
-<form method="post">
+<form method="post" autocomplete="off">
 	<div class="row">
 		{% csrf_token %}
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

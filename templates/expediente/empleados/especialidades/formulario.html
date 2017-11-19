@@ -1,13 +1,13 @@
 {% extends 'base/base.html' %}
-{% block title %}Nuevo Medicamento{% endblock %}
+{% block title %}Registro de Especialidad Empleado{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="page-header"><i class="fa fa-plus-square"></i> Nuevo Medicamento</h1>
+        <h1 class="page-header"><i class="fa fa-plus-square"></i> Registro de Especialidad Empleado</h1>
         <ol class="breadcrumb">
             <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
-            <li><a href="{% url 'expediente:listado_medicamentos' %}"><i class="fa fa-medkit"></i> Medicamentos</a></li>
-            <li><i class="fa fa-plus-square"></i> Nuevo</li>
+            <li><a href="{% url 'expediente:listado_especialidades_empleados' %}"><i class="fa fa-male"></i> Especialidades Empleados</a></li>
+            <li><i class="fa fa-file-text-o"></i> Datos</li>
         </ol>
     </div>
 </div>
@@ -18,7 +18,7 @@
 				<h3 class="panel-title">Complete los datos requeridos</h3>
 			</div>
 			<div class="panel-body">
-				<form method="post">
+				<form method="post" autocomplete="off">
 					{% csrf_token %}
 					<fieldset>
 						{{ form.as_p }}
@@ -26,7 +26,7 @@
 							<button class="btn btn-primary" type="submit">
 								<i class="fa fa-floppy-o"></i> Guardar
 							</button>
-							<a href="{% url 'expediente:listado_medicamentos' %}" class="btn btn-danger">
+							<a href="{% url 'expediente:listado_especialidades_empleados' %}" class="btn btn-danger">
 								<i class="fa fa-times-circle"></i> Cancelar
 							</a>
 						</div>
