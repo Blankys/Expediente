@@ -25,8 +25,8 @@ class EmpleadoForm(forms.ModelForm):
             'fechaIngreso': forms.TextInput(attrs = { 'class': 'form-control' }),
             'tiempoServicio': forms.NumberInput(attrs = { 'class': 'form-control' }),
             'jVPM': forms.NumberInput(attrs = { 'class': 'form-control' }),
-            'CatalogoEspecialidadEmpleado': forms.Select(attrs = { 'class': 'form-control' }),
-            'Clinica': forms.Select(attrs = { 'class': 'form-control' })
+            'CatalogoEspecialidadEmpleado': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
+            'Clinica': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' })
         }
 
 class PersonaForm(forms.ModelForm):
@@ -55,11 +55,11 @@ class PersonaForm(forms.ModelForm):
             'tercerNombre': forms.TextInput(attrs = { 'class': 'form-control' }),
             'primerApellido': forms.TextInput(attrs = { 'class': 'form-control' }),
             'segundoApellido': forms.TextInput(attrs = { 'class': 'form-control' }),
-            'genero': forms.Select(attrs = { 'class': 'form-control' }),
+            'genero': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
             'dui': forms.TextInput(attrs = { 'class': 'form-control' }),
             'jVPM': forms.TextInput(attrs = { 'class': 'form-control' }),
             'telefonoFijo': forms.TextInput(attrs = { 'class': 'form-control' }),
             'telefonoMovil': forms.TextInput(attrs = { 'class': 'form-control' }),
             'correoElectronico': forms.EmailInput(attrs = { 'class': 'form-control' }),
-            'Direccion': forms.Select(attrs = { 'class': 'form-control' })
+            'Direccion': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' })
         }

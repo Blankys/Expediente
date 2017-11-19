@@ -37,6 +37,6 @@ class SignoVitalForm(forms.ModelForm):
 			'altura': forms.NumberInput(attrs = { 'class': 'form-control' }),
 			'fechaMedicion': forms.DateInput(attrs = { 'class': 'form-control' }),
 			'notas': forms.Textarea(attrs = { 'class': 'form-control' }),
-			'Empleado': forms.Select(attrs = { 'class': 'form-control' }),
-			'Expediente': forms.Select(attrs = { 'class': 'form-control' }),
+			'Empleado': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
+			'Expediente': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
 		}
