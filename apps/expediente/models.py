@@ -32,7 +32,7 @@ class Persona(models.Model):
     telefonoFijo = models.CharField(max_length = 15, null = True, blank = True)
     telefonoMovil = models.CharField(max_length = 15, null = True, blank = True)
     correoElectronico = models.EmailField(null = True, blank = True)
-    Direccion = models.OneToOneField(Direccion, null = False, blank = False, on_delete = models.CASCADE)
+    Direccion = models.ForeignKey(Direccion, null = False, blank = False, on_delete = models.CASCADE)
 
     def nombreCompleto(self):
         return '{} {}, {} {}'.format(self.primerNombre, self.segundoNombre, self.primerApellido, self.segundoApellido)
