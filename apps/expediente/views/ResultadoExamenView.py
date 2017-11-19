@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from apps.expediente.requests.ResultadoExamenRequest import ResultadoExamenForm	# desde la carpeta apps/expediente/requests.ResultadoExamenRequest importar la clase ResultadoExamenForm
 # ResultadoExamenRequest es un archivo que contiene todos los formularios del area de laboratorio
-from apps.expediente.models import ResultadoExamen	# importando modelo
+from apps.expediente.requests.SubirResultadosRequest import subirResultadosForm
+from apps.expediente.models import ResultadoExamen,ArchivoResultadoExamen	# importando modelo
 from django.views.generic import ListView, CreateView, TemplateView	# importando clases para las vistas
 from django.core.urlresolvers import reverse_lazy	# importando la funcion para redirigir
 # Create your views here.
@@ -46,3 +47,9 @@ class buscarResultadoExamen(TemplateView):
 		buscar = request.POST['Busqueda']	# obteniendo el valor del campo de busqueda del formulario contenido en la plantilla listado_registros_resultados_labo.html
 		resultadoExamen = ResultadoExamen.objects.filter(Expediente__numeroArchivo = buscar)	# filtrando los datos mediante una FK
 		return render(request, 'expediente/examenes/resultados/buscar.html', { 'examenesEncontrados': resultadoExamen })	# enviando los resultados a el template buscar_reg_result_lab.html
+
+class uploadResultadosEscaneados(CreateView):
+	model = ArchivoResultadoExamen
+	form_class = subirResultadosForm
+	template_name = 'expediente/examenes/resultados/subir_resultados_escaneados.html'
+	success_url= reverse_lazy('expediente:resultados_escaneados')

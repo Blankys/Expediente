@@ -277,6 +277,9 @@ class ResultadoExamen(models.Model):
     Expediente = models.ForeignKey(Expediente, null = False, blank = False, on_delete = models.CASCADE)
     CatalogoTipoExamen = models.ForeignKey(CatalogoTipoExamen, null = False, blank = False, on_delete = models.CASCADE)
     Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
+    
+    def __str__(self):
+        return '{}'.format(self.id)
 
 class ArchivoResultadoExamen(models.Model):
     nombreArchivo = models.CharField(max_length = 20, null = False, blank =  False)

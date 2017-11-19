@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from apps.expediente.views.GeneralView import index
-from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen# importando vistas
+from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados# importando vistas
 from apps.expediente.views.SignoVitalView import listadoSignosVitales, agregarSignoVital, modificarSignoVital, eliminarSignoVital
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^examenes/resultados/listado$', listadoExamenes.as_view(), name = 'listado_examenes'), # referenciando a la clase de vista listadoExamenes del archivo views/ResultadoExamenView.py de la apps expediente
     url(r'^examenes/resultados/buscar$', buscarResultadoExamen.as_view(template_name = 'expediente/examenes/buscar.html'), name = 'buscar_examen'),   # referenciando a la clase de vista buscarResultadoExamen del archivo views/ResultadoExamenView.py de la apps expediente
     # NOTA: a la vista de tipo TemplateView no se puede referenciar sin darle un nombre de plantilla que sera la que se encuentra en la carpeta correspondiente de plantillas de la aplicacion
+    url(r'^examenes/resultados/subir$', uploadResultadosEscaneados.as_view(), name='resultados_escaneados'),
     url(r'^signos-vitales/agregar$', agregarSignoVital.as_view(), name = 'agregar_signo_vital'),
     url(r'^signos-vitales/listado$', listadoSignosVitales.as_view(), name = 'listado_signos_vitales'),
     url(r'^signos-vitales/modificar/(?P<pk>\d+)/$', modificarSignoVital.as_view(), name = 'modificar_signo_vital'),
