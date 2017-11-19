@@ -5,33 +5,62 @@ from apps.expediente.models import Expediente
 
 def registrarExpediente(request):
     if (request.method == 'POST'):
-        form1 = PersonaForm(request.POST)
-        form2 = PacienteForm(request.POST)
-        form3 = ExpedienteForm(request.POST)
-        if form1.is_valid():
-            persona = form1.save()
+        personaf = PersonaForm(request.POST, prefix='paciente')
+        pacientef = PacienteForm(request.POST, prefix='paciente')
+        expedientef = ExpedienteForm(request.POST, prefix='paciente')
+        direccionf = DireccionForm(request.POST, prefix='paciente')
+        contactoEf = ContactoEmergenciaForm(request.POST, prefix='contacto')
+        contactoEDf = DireccionForm(request.POST, prefix='contacto')
+
+        if direccionf.is_valid():
+            direccionp = direccionf.save()
         else:
-            form1 = PersonaForm()
-        form2.data = form2.data.copy()
-        form2.data['Persona'] = persona.id
-        if form2.is_valid():
-            paciente = form2.save()
+            direccionf = DireccionForm(prefix='paciente')
+        personaf.data = personaf.data.copy()
+        personaf.data['Direccion'] = direccionp.id
+        if personaf.is_valid():
+            persona = personaf.save()
         else:
-            from2 = PacienteForm()
-        form3.data = form3.data.copy()
-        form3.data['Paciente'] = paciente.id
-        if form3.is_valid():
-            form3.save()
+            personaf = PacienteForm(prefix='paciente')
+        pacientef.data = pacientef.data.copy()
+        pacientef.data['Persona'] = persona.id
+        if pacientef.is_valid():
+            paciente = pacientef.save()
+        else:
+            pacientef = PacienteForm(prefix='paciente')
+        expedientef.data = expedientef.data.copy()
+        expedientef.data['Paciente'] = paciente.id
+        if expedientef.is_valid():
+            expediente = expedientef.save()
+        else:
+            expedientef = ExpedienteForm(prefix='paciente')
+        if contactoEDf.is_valid():
+            contactod = contactoEDf.save()
+        else:
+            contactoEDf = DireccionForm(prefix='contacto')
+        contactoEf.data = contactoEf.data.copy()
+        contactoEf.data['Direccion'] = contactod.id
+        if contactoEf.is_valid():
+            contactoEf.save()
+        else:
+            contactoEf = ContactoEmergenciaForm(prefix='contacto')
             return redirect('/')
-        else:
-            form = PacienteForm()
+    personaf = PersonaForm(prefix='paciente')
+    pacientef = PacienteForm(prefix='paciente')
+    expedientef = ExpedienteForm(prefix='paciente')
+    direccionf = DireccionForm(prefix='paciente')
+    contactoEf = ContactoEmergenciaForm(prefix='contacto')
+    contactoEDf = DireccionForm(prefix='contacto')
     return render(
         request,
         'expediente/expedientes/registrar.html',
         {
-            'form1': PersonaForm,
-            'form2': PacienteForm,
-            'form3': ExpedienteForm
+            'form1': personaf,
+            'form2': direccionf,
+            'form3': pacientef,
+            'form4': expedientef,
+            'form5': contactoEf,
+            'form6': contactoEDf
         }
 )
 

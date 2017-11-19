@@ -21,9 +21,15 @@
 				<form method="post">
 					{% csrf_token %}
 					<fieldset>
+                        <h2 class="content-header-title">Datos del paciente</h2>
 						{{ form1.as_p }}
                         {{ form2.as_p }}
                         {{ form3.as_p }}
+                        {{ form4.as_p }}
+                        <br>
+                        <h2 class="content-header-title">Contacto de emergencia</h2>
+                        {{ form5.as_p }}
+                        {{ form6.as_p }}
 						<div class="form-group">
 							<button class="btn btn-primary" type="submit">
 								<i class="fa fa-floppy-o"></i> Guardar
