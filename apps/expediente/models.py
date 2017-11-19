@@ -78,7 +78,7 @@ class Turno(models.Model):
    horaInicio = models.DateTimeField()
    fechaFin = models.DateField()
    horaFin = models.DateTimeField()
-   # pendiente de relacionar con auth_user
+   Empleado = models.ForeignKey(Empleado, null = False, blank = False, on_delete = models.CASCADE)
 
 # Modelos que conforman el expediente del paciente
 class Paciente(models.Model):
