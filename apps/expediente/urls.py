@@ -18,7 +18,7 @@ from apps.expediente.views.TurnoView import ListadoTurnos, AgregarTurno, Modific
 urlpatterns = [
     # General
     url(r'^$', index, name = 'inicio'),
-    url(r'^municipios$', municipios, name = 'municipios'),
+    url(r'^ajax/municipios/$', municipios, name = 'ajax_municipios'),
 
     # ResultadoExamen
     url(r'^examenes/resultados/registrar$', respuestaRegistrarResultadoExamen.as_view(), name = 'registrar_resultado_examen'),

@@ -192,31 +192,28 @@
 {% block js %}
 <script type="text/javascript">
 	$(document).ready(function () {
-		/*
 		$("#id_paciente-CatalogoDepartamento").change(function () {
-			debugger;
+			var id_municipio = $("#id_paciente-CatalogoMunicipio").val();
 			$.ajax({
 				type: "GET",
-				url: "{% url 'expediente:municipios' %}",
+				url: "{% url 'expediente:ajax_municipios' %}",
 				data: {
 					id: parseInt($(this).val()) || 0
 				},
 				dataType: "json",
-				beforeSend: function(xmlHTTPRequest){
-					xmlHTTPRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
-				},
 				success: function (response) {
-					debugger;
-					$('#id_paciente-CatalogoMunicipio').empty();
-					$.each(jQuery.parseJSON(resultado), function (response, municipio) {
-						debugger;
-						if (municipio.id == "") {
-							$("#id_paciente-CatalogoMunicipio").append($("<option></option>").attr({ "value": municipio.id, "selected": "selected" }).text(municipio.nombreMunicipio));
-						}
-						else {
-							$("#id_paciente-CatalogoMunicipio").append($("<option></option>").attr({ "value": municipio.id }).text(municipio.nombreMunicipio));
-						}
-					});
+					$('#id_paciente-CatalogoMunicipio').empty().append($("<option/>").attr({ "value": "", "selected": "selected" }).text("---------"));
+					if (response.length > 0) {
+						$.each(response, function (index, municipio) {
+							if (id_municipio != "" && id_municipio == municipio.pk) {
+								$("#id_paciente-CatalogoMunicipio").append($("<option/>").attr({ "value": municipio.pk, "selected": "selected" }).text(municipio.fields.nombreMunicipio));
+							}
+							else {
+								$("#id_paciente-CatalogoMunicipio").append($("<option/>").attr({ "value": municipio.pk }).text(municipio.fields.nombreMunicipio));
+							}
+						});
+					}
+					$('#id_paciente-CatalogoMunicipio').selectpicker("refresh");
 				},
 				error: function (exception) {
 					if (exception.status != undefined) {
@@ -225,7 +222,6 @@
 				}
 			});
 		}).change();
-		*/
 	});
 </script>
 {% endblock %}
