@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% block title %}Registro de Tipos de Clinicas{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="page-header"><i class="fa fa-plus-square"></i> Registro de Clinicas</h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="{% url 'expediente:agregar_tipo_clinica' %}"><i class="fa fa-medkit"></i> Tipos de Clinicas</a></li>
+            <li><i class="fa fa-file-text-o"></i> Datos</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Complete los datos requeridos</h3>
+			</div>
+			<div class="panel-body">
+				<form method="post" autocomplete="off">
+					{% csrf_token %}
+					<fieldset>
+						{{ form.as_p }}
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">
+								<i class="fa fa-floppy-o"></i> Guardar
+							</button>
+							<a href="{% url 'expediente:agregar_tipo_clinica' %}" class="btn btn-danger">
+								<i class="fa fa-times-circle"></i> Cancelar
+							</a>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
