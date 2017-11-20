@@ -10,6 +10,10 @@ from apps.expediente.views.CatalogoEnfermedadView import listadoEnfermedades, ag
 from apps.expediente.views.CatalogoEspecialidadEmpleadoView import listadoEspecialidadesEmpleados, agregarEspecialidadEmpleado, modificarEspecialidadEmpleado, eliminarEspecialidadEmpleado
 from apps.expediente.views.CatalogoMedicamentoView import listadoMedicamentos, agregarMedicamento, modificarMedicamento, eliminarMedicamento
 from apps.expediente.views.EmpleadoView import listadoEmpleados, agregarEmpleado, modificarEmpleado, eliminarEmpleado
+from apps.expediente.views.CatalogoTipoClinicaView import ListadoTipoClinicas, AgregarTipoClinica, ModificarTipoClinica, eliminarTipoClinica
+from apps.expediente.views.ClinicaView import ListadoClinica, AgregarClinica, ModificarClinica, eliminarClinica
+from apps.expediente.views.ConsultaView import ListadoConsultas, RegistrarConsulta, ModificarConsulta, eliminarConsulta
+from apps.expediente.views.TurnoView import ListadoTurnos, AgregarTurno, ModificarTurno, eliminarTurno
 
 urlpatterns = [
     url(r'^$', index, name = 'inicio'),  # referenciando a la funcion de vista index del archivo views/GeneralView.py de la apps expediente
@@ -49,6 +53,22 @@ urlpatterns = [
     url(r'^empleados/listado$', listadoEmpleados.as_view(), name = 'listado_empleados'),
     url(r'^empleados/modificar/(?P<pk>\d+)/$', modificarEmpleado.as_view(), name = 'modificar_empleado'),
     url(r'^empleados/eliminar/(?P<id>\d+)/$', eliminarEmpleado, name = 'eliminar_empleado'),
+    url(r'^clinicas/especialidades/agregar$', AgregarTipoClinica, name = 'agregar_tipo_clinica'),
+    url(r'^clinicas/especialidades/listado$', ListadoTipoClinicas, name = 'listado_tipo_clinicas'),
+    url(r'^clinicas/especialidades/modificar(?P<pk>\d+)/$', ModificarTipoClinica, name = 'eliminar_tipo_clinica'),
+    url(r'^clinicas/especialidades/eliminar(?P<id>\d+)/$', eliminarTipoClinica, name = 'eliminar_tipo_clinica'),
+    url(r'^clinicas/agregar$', AgregarClinica.as_view(), name = 'agregar_clinica'),
+    url(r'^clinicas/listado$', ListadoClinica.as_view(), name = 'listado_clinicas'),
+    url(r'^clinicas/modificar/(?P<pk>\d+)/$', ModificarClinica.as_view(), name = 'modificar_clinica'),
+    url(r'^clinicas/eliminar/(?P<id>\d+)/$', eliminarClinica, name = 'eliminar_clinica'),
+    url(r'^consulta/agregar$', RegistrarConsulta.as_view(), name = 'agregar_consulta'),
+    url(r'^consulta/listado$', ListadoConsultas.as_view(), name = 'listado_consultas'),
+    url(r'^consulta/modificar/(?P<pk>\d+)/$', ModificarConsulta.as_view(), name = 'modificar_consulta'),
+    url(r'^consulta/eliminar/(?P<id>\d+)/$', eliminarConsulta, name = 'eliminar_consulta'),
+    url(r'^turnos/agregar$', AgregarTurno.as_view(), name = 'agregar_turno'),
+    url(r'^turnos/listado$', ListadoTurnos.as_view(), name = 'listado_turnos'),
+    url(r'^turnos/modificar/(?P<pk>\d+)/$', ModificarTurno.as_view(), name = 'modificar_turno'),
+    url(r'^turnos/eliminar/(?P<id>\d+)/$', eliminarTurno, name = 'eliminar_turno'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
