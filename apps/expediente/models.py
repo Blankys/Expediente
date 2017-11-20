@@ -143,6 +143,9 @@ class Expediente(models.Model):
     def __str__(self):
         return '{}'.format(self.Paciente)
 
+    def __str__(self):
+        return '{}'.format(self.id)
+
 class SignoVital(models.Model):
     presionArterial = models.CharField(max_length = 10)
     frecCardiaca = models.IntegerField()
@@ -280,6 +283,8 @@ class ResultadoExamen(models.Model):
     
     def __str__(self):
         return '{}'.format(self.id)
+
+
 
 class ArchivoResultadoExamen(models.Model):
     nombreArchivo = models.CharField(max_length = 20, null = False, blank =  False)
