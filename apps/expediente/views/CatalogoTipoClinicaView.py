@@ -8,20 +8,20 @@ from apps.expediente.models import CatalogoTipoClinica
 
 class ListadoTipoClinicas (ListView):
     model = CatalogoTipoClinica
-    template_name = 'expediente/clinicas/especialidades/listado.html'
+    template_name = 'expediente/clinicas/tipos/listado.html'
 
 
 class AgregarTipoClinica (CreateView):
     model = CatalogoTipoClinica
     form_class = CatalogoTipoClinicaForm
-    template_name = 'expediente/clinicas/especialidades/formulario.html'
+    template_name = 'expediente/clinicas/tipos/formulario.html'
     success_url = reverse_lazy('expediente:listado_tipo_clinicas')
 
 
 class ModificarTipoClinica (UpdateView):
     model = CatalogoTipoClinica
     form_class = CatalogoTipoClinicaForm
-    template_name = 'expediente/clinicas/especialidades/formulario.html'
+    template_name = 'expediente/clinicas/tipos/formulario.html'
     success_url = reverse_lazy('expediente:listado_tipo_clinicas')
 
 

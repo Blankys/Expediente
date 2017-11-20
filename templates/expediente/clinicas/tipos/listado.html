@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
-{% block title %}Listado de Especialidades de Clinicas{% endblock %}
+{% block title %}Listado de Tipos de Clinicas{% endblock %}
 {% block css %}
 <link href="{% static 'css/plugins/dataTables/dataTables.min.css' %}" rel="stylesheet" />
 <link href="{% static 'css/plugins/dataTables/dataTables.bootstrap.min.css' %}" rel="stylesheet" />
@@ -9,17 +9,17 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="page-header"><i class="fa fa-male"></i> Listado de Especialidades de Clinicas</h1>
+        <h1 class="page-header"><i class="fa fa-wheelchair-alt"></i> Listado de Tipos de Clinicas</h1>
         <ol class="breadcrumb">
             <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
-            <li><i class="fa fa-male"></i> Especialidades de Tipo de Clinicas</li>
+            <li><i class="fa fa-wheelchair-alt"></i> Tipos de Clinicas</li>
         </ol>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="dropdown pull-right">
-            <a href="{% url 'expediente:agregar_especialidad_empleado' %}" class="btn btn-success">
+            <a href="{% url 'expediente:agregar_tipo_clinica' %}" class="btn btn-success">
                 <i class="fa fa-plus-square"></i> Nuevo
             </a>
         </div>
@@ -31,20 +31,20 @@
 		{% if object_list %}
 		<table class="table table-striped table-bordered table-hover table-responsive dataTable">
 			<thead>
-				<th>Especialidad</th>
+				<th>Tipo</th>
 				<th></th>
 			</thead>
 			<tbody>
-				{% for especialidad_clinica in object_list %}
+				{% for tipo_clinica in object_list %}
 				<tr>
-					<td><a href="{% url 'expediente:modificar_tipo_clinica' especialidad_clinica.id %}">{{ especialidad_clinica.tipoClinica }}</a></td>
-					<td><a class="btn btn-danger btn-sm EliminarRegistro" data-url="{% url 'expediente:eliminar_tipo_clinica' especialidad_clinica.id %}"><i class="fa fa-trash"></i></a></td>
+					<td><a href="{% url 'expediente:modificar_tipo_clinica' tipo_clinica.id %}">{{ tipo_clinica.tipoClinica }}</a></td>
+					<td><a class="btn btn-danger btn-sm EliminarRegistro" data-url="{% url 'expediente:eliminar_tipo_clinica' tipo_clinica.id %}"><i class="fa fa-trash"></i></a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 		{% else %}
-		<p>No Existen Registros de Especialidades Clinicas</p>
+		<p>No Existen Registros de Tipos Clinicas</p>
 		{% endif %}
 	</div>
 </div>

@@ -11,7 +11,7 @@ class ClinicaForm(forms.ModelForm):
 
         labels = {
             'nombre': 'Nombre de Clinica',
-            'CatalogoTipoClinica': 'Especialidad',
+            'CatalogoTipoClinica': 'Tipo',
             'Direccion': 'Direccion'
         }
 

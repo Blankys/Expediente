@@ -72,5 +72,18 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1><i class="fa fa-ambulance"></i> Clinicas</h1>
+            </div>
+            <div class="panel-body">
+                <ul class="list">
+                    <li><a href="{% url 'expediente:listado_clinicas' %}">Listado</a></li>
+                    <li><a href="{% url 'expediente:listado_tipo_clinicas' %}">Tipos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

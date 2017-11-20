@@ -3,10 +3,10 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="page-header"><i class="fa fa-plus-square"></i> Registro de Especializacion de Clinicas</h1>
+        <h1 class="page-header"><i class="fa fa-file-text-o"></i> Registro de Especializacion de Clinicas</h1>
         <ol class="breadcrumb">
             <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
-            <li><a href="{% url 'expediente:listado_tipo_clinicas' %}"><i class="fa fa-medkit"></i> Tipos de Clinicas</a></li>
+            <li><a href="{% url 'expediente:listado_tipo_clinicas' %}"><i class="fa fa-wheelchair-alt"></i> Tipos de Clinicas</a></li>
             <li><i class="fa fa-file-text-o"></i> Datos</li>
         </ol>
     </div>
@@ -26,7 +26,7 @@
 							<button class="btn btn-primary" type="submit">
 								<i class="fa fa-floppy-o"></i> Guardar
 							</button>
-							<a href="{% url 'expediente:agregar_tipo_clinica' %}" class="btn btn-danger">
+							<a href="{% url 'expediente:listado_tipo_clinicas' %}" class="btn btn-danger">
 								<i class="fa fa-times-circle"></i> Cancelar
 							</a>
 						</div>
