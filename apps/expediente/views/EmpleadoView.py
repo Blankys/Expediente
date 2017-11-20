@@ -1,16 +1,15 @@
 from django.http import Http404, HttpResponseRedirect
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
 from django.views.generic import ListView, CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from apps.expediente.requests.EmpleadoRequest import EmpleadoForm, PersonaForm
 from apps.expediente.models import Empleado, Persona
 
-class listadoEmpleados(ListView):
+class ListadoEmpleados(ListView):
     model = Empleado
     template_name = 'expediente/empleados/listado.html'
 
-class agregarEmpleado(CreateView):
+class AgregarEmpleado(CreateView):
     model = Empleado
     template_name = 'expediente/empleados/formulario.html'
     form_class = EmpleadoForm
@@ -18,7 +17,7 @@ class agregarEmpleado(CreateView):
     success_url = reverse_lazy('expediente:listado_empleados')
 
     def get_context_data(self, **kwargs):
-        context = super(agregarEmpleado, self).get_context_data(**kwargs)
+        context = super(AgregarEmpleado, self).get_context_data(**kwargs)
         if 'form' not in context:
             context['form'] = self.form_class(self.request.GET)
         if 'form2' not in context:
@@ -43,7 +42,7 @@ class agregarEmpleado(CreateView):
                 mensaje_error='No se pudo guardar el Empleado. Por favor revise los datos.'
             ))
 
-class modificarEmpleado(UpdateView):
+class ModificarEmpleado(UpdateView):
     model = Empleado
     second_model = Persona
     form_class = EmpleadoForm
@@ -52,7 +51,7 @@ class modificarEmpleado(UpdateView):
     success_url = reverse_lazy('expediente:listado_empleados')
 
     def get_context_data(self, **kwargs):
-        context = super(modificarEmpleado, self).get_context_data(**kwargs)
+        context = super(ModificarEmpleado, self).get_context_data(**kwargs)
         pk = self.kwargs.get('pk', 0)
         empleado = self.model.objects.get(id=pk)
         persona = self.second_model.objects.get(id=empleado.Persona.id)

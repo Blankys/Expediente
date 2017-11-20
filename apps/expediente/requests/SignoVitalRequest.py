@@ -35,7 +35,7 @@ class SignoVitalForm(forms.ModelForm):
 			'frecRespiratoria': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'peso': forms.NumberInput(attrs = { 'class': 'form-control' }),
 			'altura': forms.NumberInput(attrs = { 'class': 'form-control' }),
-			'fechaMedicion': forms.DateInput(attrs = { 'class': 'form-control' }),
+			'fechaMedicion': forms.TextInput(attrs = { 'class': 'form-control', 'placeholder': 'DD/MM/AAAA' }),
 			'notas': forms.Textarea(attrs = { 'class': 'form-control' }),
 			'Empleado': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
 			'Expediente': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),

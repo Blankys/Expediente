@@ -5,17 +5,17 @@ from django.core.urlresolvers import reverse_lazy
 from apps.expediente.requests.CatalogoEspecialidadEmpleadoRequest import CatalogoEspecialidadEmpleadoForm
 from apps.expediente.models import CatalogoEspecialidadEmpleado
 
-class listadoEspecialidadesEmpleados(ListView):
+class ListadoEspecialidadesEmpleados(ListView):
     model = CatalogoEspecialidadEmpleado
     template_name = 'expediente/empleados/especialidades/listado.html'
 
-class agregarEspecialidadEmpleado(CreateView):
+class AgregarEspecialidadEmpleado(CreateView):
     model = CatalogoEspecialidadEmpleado
     form_class = CatalogoEspecialidadEmpleadoForm
     template_name = 'expediente/empleados/especialidades/formulario.html'
     success_url = reverse_lazy('expediente:listado_especialidades_empleados')
 
-class modificarEspecialidadEmpleado(UpdateView):
+class ModificarEspecialidadEmpleado(UpdateView):
 	model = CatalogoEspecialidadEmpleado
 	form_class = CatalogoEspecialidadEmpleadoForm
 	template_name = 'expediente/empleados/especialidades/formulario.html'

@@ -5,17 +5,17 @@ from django.core.urlresolvers import reverse_lazy
 from apps.expediente.requests.SignoVitalRequest import SignoVitalForm
 from apps.expediente.models import SignoVital
 
-class listadoSignosVitales(ListView):
+class ListadoSignosVitales(ListView):
     model = SignoVital
     template_name = 'expediente/signos_vitales/listado.html'
 
-class agregarSignoVital(CreateView):
+class AgregarSignoVital(CreateView):
     model = SignoVital
     form_class = SignoVitalForm
     template_name = 'expediente/signos_vitales/formulario.html'
     success_url = reverse_lazy('expediente:listado_signos_vitales')
 
-class modificarSignoVital(UpdateView):
+class ModificarSignoVital(UpdateView):
 	model = SignoVital
 	form_class = SignoVitalForm
 	template_name = 'expediente/signos_vitales/formulario.html'
