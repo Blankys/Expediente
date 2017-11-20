@@ -10,7 +10,7 @@ class ClinicaForm(forms.ModelForm):
         fields = '__all__'
 
         labels = {
-            'nombre': 'Nombre',
+            'nombre': 'Nombre de Clinica',
             'CatalogoTipoClinica': 'Especialidad',
             'Direccion': 'Direccion'
         }
