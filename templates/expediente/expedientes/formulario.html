@@ -11,7 +11,7 @@
         </ol>
     </div>
 </div>
-<expediente method="post" autocomplete="off">
+<form method="post" autocomplete="off">
 	{% csrf_token %}
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -19,6 +19,13 @@
 		</div>
 		<div class="panel-body">
 			<fieldset>
+				{% if errores %}
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="alert alert-danger">{{ errores }}</div>
+					</div>
+				</div>
+				{% endif %}
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
@@ -180,6 +187,45 @@
 			<i class="fa fa-times-circle"></i> Cancelar
 		</a>
 	</div>
-</expediente>
+</form>
 {% endblock %}
-{% debug %}
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function () {
+		/*
+		$("#id_paciente-CatalogoDepartamento").change(function () {
+			debugger;
+			$.ajax({
+				type: "GET",
+				url: "{% url 'expediente:municipios' %}",
+				data: {
+					id: parseInt($(this).val()) || 0
+				},
+				dataType: "json",
+				beforeSend: function(xmlHTTPRequest){
+					xmlHTTPRequest.setRequestHeader("X-CSRFToken", "{{ csrf_token }}")
+				},
+				success: function (response) {
+					debugger;
+					$('#id_paciente-CatalogoMunicipio').empty();
+					$.each(jQuery.parseJSON(resultado), function (response, municipio) {
+						debugger;
+						if (municipio.id == "") {
+							$("#id_paciente-CatalogoMunicipio").append($("<option></option>").attr({ "value": municipio.id, "selected": "selected" }).text(municipio.nombreMunicipio));
+						}
+						else {
+							$("#id_paciente-CatalogoMunicipio").append($("<option></option>").attr({ "value": municipio.id }).text(municipio.nombreMunicipio));
+						}
+					});
+				},
+				error: function (exception) {
+					if (exception.status != undefined) {
+						alertify.error(exception.status + " (" + exception.statusText + ")");
+					}
+				}
+			});
+		}).change();
+		*/
+	});
+</script>
+{% endblock %}

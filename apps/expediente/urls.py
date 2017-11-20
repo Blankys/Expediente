@@ -1,9 +1,9 @@
 from django.conf.urls import url
-from apps.expediente.views.GeneralView import index
+from apps.expediente.views.GeneralView import index, municipios
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam
 from apps.expediente.views.SignoVitalView import ListadoSignosVitales, AgregarSignoVital, ModificarSignoVital, eliminarSignoVital
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
-from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
+from apps.expediente.views.ExpedienteView import agregarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate
 from apps.expediente.views.CatalogoEnfermedadView import ListadoEnfermedades, AgregarEnfermedad, ModificarEnfermedad, eliminarEnfermedad
@@ -18,6 +18,7 @@ from apps.expediente.views.TurnoView import ListadoTurnos, AgregarTurno, Modific
 urlpatterns = [
     # General
     url(r'^$', index, name = 'inicio'),
+    url(r'^municipios$', municipios, name = 'municipios'),
 
     # ResultadoExamen
     url(r'^examenes/resultados/registrar$', respuestaRegistrarResultadoExamen.as_view(), name = 'registrar_resultado_examen'),
@@ -37,7 +38,7 @@ urlpatterns = [
     url(r'^referencias/registrar$',registrarReferenciaMedica, name = 'registrar_referencia_medica'),
 
     # Expediente
-    url(r'^expedientes/agregar$', registrarExpediente, name = 'agregar_expediente'),
+    url(r'^expedientes/agregar$', agregarExpediente, name = 'agregar_expediente'),
     url(r'^expedientes/listado$', listadoExpedientes.as_view(), name = 'listado_expedientes'),
     url(r'^expedientes/modificar/(?P<id>\d+)/$', modificarExpediente, name = 'modificar_expediente'),
     url(r'^expedientes/eliminar/(?P<id>\d+)/$', eliminarExpediente, name = 'eliminar_expediente'),

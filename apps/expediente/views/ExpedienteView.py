@@ -8,7 +8,8 @@ class listadoExpedientes(ListView):
     model = Expediente
     template_name = 'expediente/expedientes/listado.html'
 
-def registrarExpediente(request):
+def agregarExpediente(request):
+    errores = None
     if request.method == 'POST':
         direccion_paciente_form = DireccionForm(request.POST, prefix='paciente')
         persona_paciente_form = PersonaForm(request.POST, prefix='paciente')
@@ -16,22 +17,33 @@ def registrarExpediente(request):
         expediente_form = ExpedienteForm(request.POST, prefix='paciente')
 
         if direccion_paciente_form.is_valid():
-            direccion_paciente_form.save()
+            direccion = direccion_paciente_form.save()
+            persona_paciente_form.data = persona_paciente_form.data.copy()
+            persona_paciente_form.data['Direccion'] = direccion.id
 
             if persona_paciente_form.is_valid():
-                paciente_form.data['Direccion'] = direccion_paciente_form.id
-                persona_paciente_form.save()
+                persona = persona_paciente_form.save()
+                paciente_form.data = paciente_form.data.copy()
+                paciente_form.data['Persona'] = persona.id
+                paciente_form.data['Clinica'] = 1
 
                 if paciente_form.is_valid():
-                    paciente_form.data['Persona'] = persona_paciente_form.id
-                    paciente_form.data['Clinica'] = 1
-                    paciente_form.save()
+                    paciente = paciente_form.save()
+                    expediente_form.data = expediente_form.data.copy()
+                    expediente_form.data['Paciente'] = paciente.id
+                    expediente_form.data['Clinica'] = 1
 
                     if expediente_form.is_valid():
-                        expediente_form.data['Paciente'] = paciente_form.id
-                        expediente_form.data['Clinica'] = 1
                         expediente_form.save()
                         return redirect('expediente:listado_expedientes')
+                    else:
+                        errores = expediente_form.errors
+                else:
+                    errores = paciente_form.errors
+            else:
+                errores = persona_paciente_form.errors
+        else:
+            errores = direccion_paciente_form.errors
     else:
         direccion_paciente_form = DireccionForm(request.POST, prefix='paciente')
         persona_paciente_form = PersonaForm(request.POST, prefix='paciente')
@@ -45,7 +57,8 @@ def registrarExpediente(request):
             'direccion_paciente': direccion_paciente_form,
             'persona_paciente': persona_paciente_form,
             'paciente': paciente_form,
-            'expediente': expediente_form
+            'expediente': expediente_form,
+            'errores': errores
         }
     )
 
