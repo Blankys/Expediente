@@ -74,9 +74,9 @@ urlpatterns = [
     url(r'^empleados/eliminar/(?P<id>\d+)/$', eliminarEmpleado, name = 'eliminar_empleado'),
 
     # TipoClinica
-    url(r'^clinicas/especialidades/agregar$', AgregarTipoClinica, name = 'agregar_tipo_clinica'),
-    url(r'^clinicas/especialidades/listado$', ListadoTipoClinicas, name = 'listado_tipo_clinicas'),
-    url(r'^clinicas/especialidades/modificar(?P<pk>\d+)/$', ModificarTipoClinica, name = 'eliminar_tipo_clinica'),
+    url(r'^clinicas/especialidades/agregar$', AgregarTipoClinica.as_view(), name = 'agregar_tipo_clinica'),
+    url(r'^clinicas/especialidades/listado$', ListadoTipoClinicas.as_view(), name = 'listado_tipo_clinicas'),
+    url(r'^clinicas/especialidades/modificar(?P<pk>\d+)/$', ModificarTipoClinica.as_view(), name = 'eliminar_tipo_clinica'),
     url(r'^clinicas/especialidades/eliminar(?P<id>\d+)/$', eliminarTipoClinica, name = 'eliminar_tipo_clinica'),
 
     # Clinica

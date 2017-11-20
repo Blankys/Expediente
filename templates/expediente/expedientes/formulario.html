@@ -1,0 +1,186 @@
+{% extends 'base/base.html' %}
+{% block title %}Registro de Expediente{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="page-header"><i class="fa fa-file-text-o"></i> Registro de Expediente</h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="{% url 'expediente:listado_expedientes' %}"><i class="fa fa-desktop"></i> Expedientes</a></li>
+            <li><i class="fa fa-file-text-o"></i> Datos</li>
+        </ol>
+    </div>
+</div>
+<expediente method="post" autocomplete="off">
+	{% csrf_token %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Complete los datos requeridos</h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<legend>Datos Personales</legend>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.primerNombre.name}}">{{persona_paciente.primerNombre.label}}</label>
+							{{persona_paciente.primerNombre}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.segundoNombre.name}}">{{persona_paciente.segundoNombre.label}}</label>
+							{{persona_paciente.segundoNombre}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.tercerNombre.name}}">{{persona_paciente.tercerNombre.label}}</label>
+							{{persona_paciente.tercerNombre}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.primerApellido.name}}">{{persona_paciente.primerApellido.label}}</label>
+							{{persona_paciente.primerApellido}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.segundoApellido.name}}">{{persona_paciente.segundoApellido.label}}</label>
+							{{persona_paciente.segundoApellido}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.genero.name}}">{{persona_paciente.genero.label}}</label>
+							{{persona_paciente.genero}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.dui.name}}">{{persona_paciente.dui.label}}</label>
+							{{persona_paciente.dui}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.telefonoFijo.name}}">{{persona_paciente.telefonoFijo.label}}</label>
+							{{persona_paciente.telefonoFijo}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.telefonoMovil.name}}">{{persona_paciente.telefonoMovil.label}}</label>
+							{{persona_paciente.telefonoMovil}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{persona_paciente.correoElectronico.name}}">{{persona_paciente.correoElectronico.label}}</label>
+							{{persona_paciente.correoElectronico}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
+							<label for="{{direccion_paciente.detalleDireccion.name}}">{{direccion_paciente.detalleDireccion.label}}</label>
+							{{direccion_paciente.detalleDireccion}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{direccion_paciente.CatalogoDepartamento.name}}">{{direccion_paciente.CatalogoDepartamento.label}}</label>
+							{{direccion_paciente.CatalogoDepartamento}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{direccion_paciente.CatalogoMunicipio.name}}">{{direccion_paciente.CatalogoMunicipio.label}}</label>
+							{{direccion_paciente.CatalogoMunicipio}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{paciente.tipoSangre.name}}">{{paciente.tipoSangre.label}}</label>
+							{{paciente.tipoSangre}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{paciente.fechaNacimiento.name}}">{{paciente.fechaNacimiento.label}}</label>
+							{{paciente.fechaNacimiento}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{paciente.edad.name}}">{{paciente.edad.label}}</label>
+							{{paciente.edad}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{paciente.estadoCivil.name}}">{{paciente.estadoCivil.label}}</label>
+							{{paciente.estadoCivil}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{paciente.ocupacion.name}}">{{paciente.ocupacion.label}}</label>
+							{{paciente.ocupacion}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{expediente.CatalogoAlergia.name}}">{{expediente.CatalogoAlergia.label}}</label>
+							{{expediente.CatalogoAlergia}}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{expediente.fechaElaboracion.name}}">{{expediente.fechaElaboracion.label}}</label>
+							{{expediente.fechaElaboracion}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{expediente.Archivero.name}}">{{expediente.Archivero.label}}</label>
+							{{expediente.Archivero}}
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" type="submit">
+			<i class="fa fa-floppy-o"></i> Guardar
+		</button>
+		<a href="{% url 'expediente:listado_expedientes' %}" class="btn btn-danger">
+			<i class="fa fa-times-circle"></i> Cancelar
+		</a>
+	</div>
+</expediente>
+{% endblock %}
+{% debug %}
