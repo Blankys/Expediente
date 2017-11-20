@@ -3,7 +3,7 @@ from apps.expediente.views.GeneralView import index
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados# importando vistas
 from apps.expediente.views.SignoVitalView import listadoSignosVitales, agregarSignoVital, modificarSignoVital, eliminarSignoVital
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
-from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpediente
+from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpedientes
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate, alergia_delete
 from apps.expediente.views.CatalogoEnfermedadView import listadoEnfermedades, agregarEnfermedad, modificarEnfermedad, eliminarEnfermedad
@@ -24,8 +24,8 @@ urlpatterns = [
     url(r'^signos-vitales/eliminar/(?P<id>\d+)/$', eliminarSignoVital, name = 'eliminar_signo_vital'),
     url(r'^referencias/listado$',listadoReferenciaMedica, name = 'listado_referencia_medica'),
     url(r'^referencias/registrar$',registrarReferenciaMedica, name = 'registrar_referencia_medica'),
-    url(r'^expedientes/registrar$', registrarExpediente, name = 'registrar_expediente'),
-    url(r'^expedientes/listado$', listadoExpediente, name = 'listado_expediente'),
+    url(r'^expedientes/agregar$', registrarExpediente, name = 'agregar_expediente'),
+    url(r'^expedientes/listado$', listadoExpedientes.as_view(), name = 'listado_expedientes'),
     url(r'^examenes/tipos/listado$', listadoTipoExamen.as_view(), name = 'listado_tipo_examen'),
     url(r'^examenes/tipos/registrar$', nuevoTipoExamen.as_view(), name = 'nuevo_tipo_examen'),
     url(r'^examenes/ordenes/listado$', listadoSolicitudExamen.as_view(), name = 'listado_orden_examen'),

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.views.generic import ListView
 from apps.expediente.requests.ExpedienteRequest import *
 from apps.expediente.models import Expediente
 
@@ -64,23 +64,6 @@ def registrarExpediente(request):
         }
 )
 
-def listadoExpediente(request):
-    if (request.method == 'POST'):
-        busquedaId = request.POST['Busqueda']
-        try:
-            expediente = Expediente.objects.get(id=busquedaId)
-        except Expediente.DoesNotExist:
-            expediente = None
-        return render(
-            request,
-            'expediente/expedientes/listado.html',
-            {
-                'exp' : expediente
-            }
-        )
-
-    return render(
-		request,
-		'expediente/expedientes/listado.html',
-	)
-
+class listadoExpedientes(ListView):
+    model = Expediente
+    template_name = 'expediente/expedientes/listado.html'
