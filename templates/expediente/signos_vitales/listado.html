@@ -43,8 +43,10 @@
 					<td>{{ signo_vital.Expediente.Paciente }}</td>
 					<td>{{ signo_vital.Empleado.Persona.nombreCompleto }}</td>
 					<td>
-						<a class="btn btn-primary btn-sm" href="{% url 'expediente:modificar_signo_vital' signo_vital.id %}"><i class="fa fa-pencil"></i></a>
-						<a class="btn btn-danger btn-sm EliminarRegistro" data-url="{% url 'expediente:eliminar_signo_vital' signo_vital.id %}"><i class="fa fa-trash"></i></a>
+						<span class="btn-group">
+							<a class="btn btn-primary btn-sm" href="{% url 'expediente:modificar_signo_vital' signo_vital.id %}"><i class="fa fa-pencil"></i></a>
+							<a class="btn btn-danger btn-sm EliminarRegistro" data-url="{% url 'expediente:eliminar_signo_vital' signo_vital.id %}"><i class="fa fa-trash"></i></a>
+						</span>
 					</td>
 				</tr>
 				{% endfor %}

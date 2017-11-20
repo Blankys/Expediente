@@ -31,12 +31,23 @@
 		{% if object_list %}
 		<table class="table table-striped table-bordered table-hover table-responsive dataTable">
 			<thead>
-				<th>Nombre</th>
+				<th>Paciente</th>
+				<th>Archivero</th>
+				<th>Fecha de Elaboración</th>
+				<th></th>
 			</thead>
 			<tbody>
 				{% for expediente in object_list %}
 				<tr>
 					<td>{{ expediente.Paciente.Persona }}</td>
+					<td>{{ expediente.Archivero.id }}</td>
+					<td>{{ expediente.fechaElaboracion }}</td>
+					<td>
+						<span class="btn-group">
+							<a class="btn btn-primary btn-sm" href="{% url 'expediente:modificar_expediente' expediente.id %}"><i class="fa fa-pencil"></i></a>
+							<a class="btn btn-danger btn-sm EliminarRegistro" data-url="{% url 'expediente:eliminar_expediente' expediente.id %}"><i class="fa fa-trash"></i></a>
+						</span>
+					</td>
 				</tr>
 				{% endfor %}
 			</tbody>

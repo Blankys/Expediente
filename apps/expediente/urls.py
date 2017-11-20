@@ -3,7 +3,7 @@ from apps.expediente.views.GeneralView import index
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam
 from apps.expediente.views.SignoVitalView import ListadoSignosVitales, AgregarSignoVital, ModificarSignoVital, eliminarSignoVital
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
-from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpedientes
+from apps.expediente.views.ExpedienteView import registrarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate
 from apps.expediente.views.CatalogoEnfermedadView import ListadoEnfermedades, AgregarEnfermedad, ModificarEnfermedad, eliminarEnfermedad
@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^examenes/resultados/listado$', listadoExamenes.as_view(), name = 'listado_examenes'),
     url(r'^examenes/resultados/buscar$', buscarResultadoExamen.as_view(template_name = 'expediente/examenes/buscar.html'), name = 'buscar_examen'),
     url(r'^examenes/resultados/subir$', uploadResultadosEscaneados.as_view(), name='resultados_escaneados'),
-     url(r'^examenes/resultados/modificar/(?P<pk>\d+)$', actualizarRegResultExam.as_view(), name = 'modificar_examen'), 
+     url(r'^examenes/resultados/modificar/(?P<pk>\d+)$', actualizarRegResultExam.as_view(), name = 'modificar_examen'),
+
     # SignoVital
     url(r'^signos-vitales/agregar$', AgregarSignoVital.as_view(), name = 'agregar_signo_vital'),
     url(r'^signos-vitales/listado$', ListadoSignosVitales.as_view(), name = 'listado_signos_vitales'),
@@ -38,6 +39,8 @@ urlpatterns = [
     # Expediente
     url(r'^expedientes/agregar$', registrarExpediente, name = 'agregar_expediente'),
     url(r'^expedientes/listado$', listadoExpedientes.as_view(), name = 'listado_expedientes'),
+    url(r'^expedientes/modificar/(?P<id>\d+)/$', modificarExpediente, name = 'modificar_expediente'),
+    url(r'^expedientes/eliminar/(?P<id>\d+)/$', eliminarExpediente, name = 'eliminar_expediente'),
 
     # TipoExamen
     url(r'^examenes/tipos/listado$', listadoTipoExamen.as_view(), name = 'listado_tipo_examen'),

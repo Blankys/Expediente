@@ -1,9 +1,9 @@
 {% extends 'base/base.html' %}
-{% block title %}Registro de Expediente{% endblock %}
+{% block title %}Registro de Expediente del Paciente{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h1 class="page-header"><i class="fa fa-file-text-o"></i> Registro de Expediente</h1>
+        <h1 class="page-header"><i class="fa fa-file-text-o"></i> Registro de Expediente del Paciente</h1>
         <ol class="breadcrumb">
             <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
             <li><a href="{% url 'expediente:listado_expedientes' %}"><i class="fa fa-desktop"></i> Expedientes</a></li>
@@ -19,7 +19,6 @@
 		</div>
 		<div class="panel-body">
 			<fieldset>
-				<legend>Datos Personales</legend>
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="form-group">
