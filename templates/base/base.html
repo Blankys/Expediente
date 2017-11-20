@@ -12,6 +12,7 @@
         <link href="{% static 'css/plugins/alertify/alertify.min.css' %}" rel="stylesheet" />
         <link href="{% static 'css/plugins/alertify/alertify.bootstrap.min.css' %}" rel="stylesheet" />
         <link href="{% static 'css/plugins/select/select.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/plugins/datetimepicker/datetimepicker.min.css' %}" rel="stylesheet" />
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
         {% block css %}
         {% endblock %}
@@ -95,6 +96,9 @@
         <script src="{% static 'js/plugins/alertify/alertify.min.js' %}"></script>
         <script src="{% static 'js/personalizaciones/alertify.js' %}"></script>
         <script src="{% static 'js/plugins/select/select.min.js' %}"></script>
+        <script src="{% static 'js/plugins/datetimepicker/datetimepicker.min.js' %}"></script>
+        <script src="{% static 'js/plugins/datetimepicker/locales/bootstrap-datetimepicker.es.js' %}"></script>
+        <script src="{% static 'js/personalizaciones/datetimepicker.js' %}"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 {% if mensaje_error %}

@@ -12,13 +12,13 @@ class ExpedienteForm(forms.ModelForm):
         ]
 
         labels = {
-            'fechaElaboracion' : 'Fecha de Elaboración de Expediente',
+            'fechaElaboracion' : 'Fecha de Elaboración del Expediente',
             'CatalogoAlergia' : 'Alergias',
             'Archivero': 'Archivero'
         }
 
         widgets = {
-            'fechaElaboracion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'DD/MM/AAAA'}),
+            'fechaElaboracion': forms.TextInput(attrs={'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA'}),
             'CatalogoAlergia': forms.Select(attrs={'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10', 'multiple': 'multiple', 'data-actions-box': 'true'}),
             'Archivero': forms.Select(attrs={'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10'})
         }
@@ -45,7 +45,7 @@ class PacienteForm(forms.ModelForm):
 
         widgets = {
             'tipoSangre': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
-            'fechaNacimiento': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'DD/MM/AAAA'}),
+            'fechaNacimiento': forms.TextInput(attrs={'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA'}),
             'edad': forms.NumberInput(attrs = { 'class': 'form-control' }),
             'estadoCivil': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
             'ocupacion': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' })

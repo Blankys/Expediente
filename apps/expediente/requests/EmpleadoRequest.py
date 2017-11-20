@@ -22,7 +22,7 @@ class EmpleadoForm(forms.ModelForm):
         }
 
         widgets={
-            'fechaIngreso': forms.TextInput(attrs = { 'class': 'form-control', 'placeholder': 'DD/MM/AAAA' }),
+            'fechaIngreso': forms.TextInput(attrs = { 'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA' }),
             'tiempoServicio': forms.NumberInput(attrs = { 'class': 'form-control' }),
             'jVPM': forms.NumberInput(attrs = { 'class': 'form-control' }),
             'CatalogoEspecialidadEmpleado': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),

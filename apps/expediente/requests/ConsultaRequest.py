@@ -23,14 +23,14 @@ class ConsultaForm(forms.ModelForm):
         }
 
         widgets = {
-            'fechaConsulta': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'fechaConsulta': forms.TextInput(attrs = { 'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA' }),
             'motivo': forms.Textarea(attrs={'class': 'form-control'}),
             'sintomatologia': forms.Textarea(attrs={'class': 'form-control'}),
             'observaciones': forms.Textarea(attrs={'class': 'form-control'}),
             'diagnostico': forms.Textarea(attrs={'class': 'form-control'}),
-            'fechaProximaConsulta': forms.DateTimeInput(attrs={'class': 'form-control'}),
-            'Expediente': forms.Select(attrs={'class': 'form-control'}),
-            'CatalogoEnfermedad': forms.Select(attrs={'class': 'form-control'}),
-            'Empleado': forms.Select(attrs={'class': 'form-control'}),
-            'Clinica': forms.Select(attrs={'class': 'form-control'})
+            'fechaProximaConsulta': forms.TextInput(attrs = { 'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA' }),
+            'Expediente': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
+            'CatalogoEnfermedad': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
+            'Empleado': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' }),
+            'Clinica': forms.Select(attrs = { 'class': 'form-control selectpicker', 'data-live-search': 'true', 'data-size': '10' })
         }

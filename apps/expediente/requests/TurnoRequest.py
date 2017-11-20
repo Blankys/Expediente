@@ -17,8 +17,8 @@ class TurnoForm(forms.ModelForm):
         }
 
         widgets = {
-            'fechaInicio': forms.DateTimeInput(attrs={'class': 'form-control'}),
-            'horaInicio': forms.TimeInput(attrs={'class': 'form-control'}),
-            'fechaFin': forms.DateTimeInput(attrs={'class': 'form-control'}),
-            'horaFin': forms.TimeInput(attrs={'class': 'form-control'}),
+            'fechaInicio': forms.TextInput(attrs = { 'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA' }),
+            'horaInicio': forms.TextInput(attrs = { 'class': 'form-control hora', 'placeholder': 'HH/MM/SS' }),
+            'fechaFin': forms.TextInput(attrs = { 'class': 'form-control fecha', 'placeholder': 'DD/MM/AAAA' }),
+            'horaFin': forms.TextInput(attrs = { 'class': 'form-control hora', 'placeholder': 'HH/MM/SS' }),
         }
