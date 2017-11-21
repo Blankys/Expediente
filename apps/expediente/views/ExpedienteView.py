@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
+
+from apps.expediente.permisos import Permisos
 from apps.expediente.requests.ExpedienteRequest import *
 from apps.expediente.models import Expediente
 
@@ -8,6 +11,7 @@ class listadoExpedientes(ListView):
     model = Expediente
     template_name = 'expediente/expedientes/listado.html'
 
+@user_passes_test(Permisos.medico_denegado, login_url='/acceso-denegado')
 def agregarExpediente(request):
     errores = None
     if request.method == 'POST':
@@ -62,6 +66,7 @@ def agregarExpediente(request):
         }
     )
 
+@user_passes_test(Permisos.solo_admin, login_url='/acceso-denegado')
 def modificarExpediente(request, id):
     expediente = Expediente.objects.get(id=id)
 
@@ -108,6 +113,8 @@ def modificarExpediente(request, id):
 def eliminarExpediente(request, id):
     if not request.is_ajax():
         raise Http404("Error: Solicitud denegada - Esta acción solo se puede ejecutar desde una llamada Ajax.")
+    if Permisos.medico_denegado:
+        return JsonResponse({'error': True, 'mensaje': 'Usted no tiene permiso para realizar esta acción'})
     expediente = Expediente.objects.get(id = id)
     if request.method == 'GET':
         expediente.delete()

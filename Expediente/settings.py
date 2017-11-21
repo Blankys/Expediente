@@ -24,9 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'otap%8pj-w!bo99ku-ewke7b&0v5&06+dj_xuv04i)j1_p_8_m'
 
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -78,7 +75,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'expedienteDB',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': 'system',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -131,8 +128,11 @@ LOGOUT_REDIRECT_URL = reverse_lazy('iniciar_sesion')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 if DEBUG:
-   INTERNAL_IPS = ('127.0.0.1', 'localhost',)
+   INTERNAL_IPS = ('127.0.0.1', 'localhost')
+
    MIDDLEWARE += (
        'debug_toolbar.middleware.DebugToolbarMiddleware',
    )

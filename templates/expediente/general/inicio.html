@@ -18,8 +18,7 @@
             <div class="panel-body">
                 <ul class="list">
                     <li><a href="{% url 'expediente:listado_expedientes' %}">Listado</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Pacientes</a></li>
-                    <li><a href="{% url 'expediente:listado_signos_vitales' %}">Signos Vitales</a></li>
+                    {% if perms.expediente.add_signovital %}<li><a href="{% url 'expediente:listado_signos_vitales' %}">Signos Vitales</a></li>{% endif %}
                 </ul>
             </div>
         </div>
@@ -42,6 +41,7 @@
             </div>
         </div>
     </div>
+    {% if perms.auth.add_permission %}
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -55,7 +55,9 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
+{% if perms.auth.add_permission %}
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <div class="panel panel-default">
@@ -87,4 +89,5 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}

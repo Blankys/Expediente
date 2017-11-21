@@ -1,13 +1,21 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.http import Http404, HttpResponseRedirect
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
+
+from apps.expediente.permisos import Permisos
 from apps.expediente.requests.EmpleadoRequest import EmpleadoForm, PersonaForm
 from apps.expediente.models import Empleado, Persona
 
 class ListadoEmpleados(ListView):
     model = Empleado
     template_name = 'expediente/empleados/listado.html'
+
+    @method_decorator(user_passes_test(Permisos.solo_admin, login_url='/acceso-denegado'))
+    def dispatch(self, *args, **kwargs):
+        return super(ListadoEmpleados, self).dispatch(*args, **kwargs)
 
 class AgregarEmpleado(CreateView):
     model = Empleado
@@ -41,6 +49,10 @@ class AgregarEmpleado(CreateView):
                 persona_errores=persona_form.errors,
                 mensaje_error='No se pudo guardar el Empleado. Por favor revise los datos.'
             ))
+
+    @method_decorator(user_passes_test(Permisos.solo_admin, login_url='/acceso-denegado'))
+    def dispatch(self, *args, **kwargs):
+        return super(AgregarEmpleado, self).dispatch(*args, **kwargs)
 
 class ModificarEmpleado(UpdateView):
     model = Empleado
@@ -76,9 +88,15 @@ class ModificarEmpleado(UpdateView):
         else:
             return HttpResponseRedirect(self.get_success_url())
 
+    @method_decorator(user_passes_test(Permisos.solo_admin, login_url='/acceso-denegado'))
+    def dispatch(self, *args, **kwargs):
+        return super(ModificarEmpleado, self).dispatch(*args, **kwargs)
+
 def eliminarEmpleado(request, id):
     if not request.is_ajax():
         raise Http404("Error: Solicitud denegada - Esta acción solo se puede ejecutar desde una llamada Ajax.")
+    if Permisos.solo_admin:
+        return JsonResponse({'error': True, 'mensaje': 'Usted no tiene permiso para realizar esta acción'})
     empleado = Empleado.objects.get(id = id)
     if request.method == 'GET':
         empleado.delete()

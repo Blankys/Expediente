@@ -30,7 +30,7 @@
                     <a class="navbar-brand" href="/">ExpedienteSys</a>
                 </div>
                 <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-                    {% now "j F Y - H:i" %}
+                    {% now "j F Y - H:i" %} | User: {{ user.get_username }}
                 </div>
             </nav>
             <nav class="navbar-default navbar-side" role="navigation">
@@ -42,8 +42,7 @@
                             <a href="#"><i class="fa fa-desktop fa-3x"></i> Expedientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="{% url 'expediente:listado_expedientes' %}">Listado</a></li>
-                                <li><a href="{% url 'expediente:inicio' %}">Pacientes</a></li>
-                                <li><a href="{% url 'expediente:listado_signos_vitales' %}">Signos Vitales</a></li>
+                                {% if perms.expediente.add_signovital %}<li><a href="{% url 'expediente:listado_signos_vitales' %}">Signos Vitales</a></li>{% endif %}
                             </ul>
                         </li>
                         <li>
@@ -58,6 +57,7 @@
                                 <li><a href="{% url 'expediente:listado_examenes' %}">Resultados Examenes</a></li>
                             </ul>
                         </li>
+                        {% if perms.auth.add_permission %}
                         <li>
                             <a href="#"><i class="fa fa-users fa-3x"></i> Empleados<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -82,6 +82,7 @@
                                 <li><a href="{% url 'expediente:listado_tipo_clinicas' %}">Tipos</a></li>
                             </ul>
                         </li>
+                        {% endif %}
                         <li><a href="{% url 'cerrar_sesion' %}"><i class="fa fa-sign-out fa-3x"></i> Cerrar Sesión</a></li>
                     </ul>
                 </div>

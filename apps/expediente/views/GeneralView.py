@@ -15,3 +15,6 @@ def municipios(request):
         return HttpResponse(serializers.serialize('json', municipios), content_type="application/json")
     except CatalogoMunicipio.DoesNotExist:
         return HttpResponse(serializers.serialize('json', []), content_type="application/json")
+
+def accesoDenegado(request):
+    return render(request, 'expediente/general/acceso_denegado.html')

@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth.views import login_required
-from apps.expediente.views.GeneralView import index, municipios
+from apps.expediente.views.GeneralView import index, municipios, accesoDenegado
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam,listadoArchivoResultados
 from apps.expediente.views.SignoVitalView import ListadoSignosVitales, AgregarSignoVital, ModificarSignoVital, eliminarSignoVital
 from apps.expediente.views.ExpedienteView import agregarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
@@ -24,6 +24,7 @@ urlpatterns = [
     # General
     url(r'^$', login_required(index), name='inicio'),
     url(r'^ajax/municipios/$', login_required(municipios), name='ajax_municipios'),
+    url(r'^acceso-denegado$', accesoDenegado, name='acceso_denegado'),
 
     # ResultadoExamen
     url(r'^examenes/resultados/registrar$', login_required(respuestaRegistrarResultadoExamen.as_view()), name='registrar_resultado_examen'),
