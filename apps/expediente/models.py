@@ -216,6 +216,8 @@ class Consulta(models.Model):
     Empleado = models.ForeignKey(Empleado, null=False, blank=False, on_delete=models.CASCADE)
     Clinica = models.ForeignKey(Clinica, null=False, blank=False, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.id)
 
 # Documentos a emitir en una consulta
 class ConstanciaMedica(models.Model):
@@ -223,7 +225,6 @@ class ConstanciaMedica(models.Model):
     motivoConstancia = models.TextField()
     fechaEmisionConstancia = models.DateField()
     Consulta = models.ForeignKey(Consulta, null=False, blank=False, on_delete=models.CASCADE)
-
 
 class IncapacidadMedica(models.Model):
     RIESGO = (
@@ -276,7 +277,7 @@ class CatalogoMedicamento(models.Model):
 
 class RecetaMedicamento(models.Model):
     dosis = models.TextField(max_length=100)
-    RecetaMedica = models.ForeignKey(RecetaMedica, null=False, blank=False, on_delete=models.CASCADE)
+    RecetaMedica = models.ForeignKey(RecetaMedica, null=True, blank=True, on_delete=models.CASCADE)
     CatalogoMedicamento = models.ForeignKey(CatalogoMedicamento, null=False, blank=False, on_delete=models.CASCADE)
 
 

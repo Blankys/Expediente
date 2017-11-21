@@ -32,10 +32,11 @@
             <div class="panel-body">
                 <ul class="list">
                     <li><a href="{% url 'expediente:listado_consultas' %}">Listado</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Constancias</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Incapacidades</a></li>
+                    <li><a href="{% url 'expediente:listado_constancias' %}">Constancias</a></li>
+                    <li><a href="{% url 'expediente:listado_incapacidades' %}">Incapacidades</a></li>
                     <li><a href="{% url 'expediente:listado_referencia_medica' %}">Referencias Medicas</a></li>
-                    <li><a href="{% url 'expediente:inicio' %}">Recetas</a></li>
+                    <li><a href="{% url 'expediente:listado_recetas' %}">Recetas Medicas</a></li>
+                    <li><a href="{% url 'expediente:listado_ordenes_examen' %}">Ordenes de Examenes Medicos</a></li>
                     <li><a href="{% url 'expediente:listado_examenes' %}">Resultados Examenes</a></li>
                 </ul>
             </div>

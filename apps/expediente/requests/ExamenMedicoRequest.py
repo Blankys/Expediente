@@ -1,5 +1,5 @@
 from django import forms
-from apps.expediente.models import CatalogoTipoExamen, OrdenExamenMedico
+from apps.expediente.models import OrdenExamenMedico, CatalogoTipoExamen
 
 class CatalogoTipoExamenForm(forms.ModelForm):
 	class Meta:
@@ -9,23 +9,22 @@ class CatalogoTipoExamenForm(forms.ModelForm):
 			'nombreExamen',
 			'descripcionExamen',
 			'costo',
-			
+
 		]
 
 		labels = {
 			'nombreExamen': 'Nombre examen',
 			'descripcionExamen': 'Descripción examen',
 			'costo': 'Costo examen',
-			
+
 		}
 
 		widgets={
 			'nombreExamen': forms.TextInput(attrs = { 'class': 'form-control' }),
 			'descripcionExamen': forms.Textarea(attrs = { 'class': 'form-control' }),
 			'costo': forms.TextInput(attrs = { 'class': 'form-control' }),
-			
-		}
 
+		}
 
 
 class OrdenExamenMedicoForm(forms.ModelForm):
@@ -44,18 +43,15 @@ class OrdenExamenMedicoForm(forms.ModelForm):
 			'estadoOrden': 'Estado orden',
 			'Consulta': 'Consulta',
 			'CatalogoTipoExamen': 'Catalogo tipoExam'
-			
+
 		}
 
-		widgets={
-			'fechaSolicitudExamen': forms.DateInput(attrs = { 'class': 'form-control' }),
-			'estadoOrden': forms.TextInput(attrs = { 'class': 'form-control' }),
-			'Consulta': forms.TextInput(attrs = { 'class': 'form-control' }),
-			'CatalogoTipoExamen': forms.Select(attrs = { 'class': 'form-control' }),
-			
+		widgets = {
+			'fechaSolicitudExamen': forms.DateInput(attrs={'class': 'form-control'}),
+			'estadoOrden': forms.TextInput(attrs={'class': 'form-control'}),
+			'Consulta': forms.TextInput(attrs={'class': 'form-control'}),
+			'CatalogoTipoExamen': forms.Select(attrs={'class': 'form-control'}),
+
 		}
-
-
-
 
 

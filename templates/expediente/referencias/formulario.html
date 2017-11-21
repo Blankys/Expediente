@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% block title %}Registro de Referencias Medicas{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="page-header"><i class="fa fa-file-text-o"></i> Registro de Referencias Medicas</h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="{% url 'expediente:listado_referencia_medica' %}"><i class="fa fa-file"></i> Referencias Medicas</a></li>
+            <li><i class="fa fa-file-text-o"></i> Datos</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Complete los datos requeridos</h3>
+			</div>
+			<div class="panel-body">
+				<form method="post" autocomplete="off">
+					{% csrf_token %}
+					<fieldset>
+						{{ form.as_p }}
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">
+								<i class="fa fa-floppy-o"></i> Guardar
+							</button>
+							<a href="{% url 'expediente:listado_referencia_medica' %}" class="btn btn-danger">
+								<i class="fa fa-times-circle"></i> Cancelar
+							</a>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

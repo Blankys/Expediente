@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% block title %}Registro de Receta Medica{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="page-header"><i class="fa fa-file-text-o"></i> Registro de Receta Medica</h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'expediente:inicio' %}"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="{% url 'expediente:listado_recetas' %}"><i class="fa fa-file"></i> Recetas Medicas</a></li>
+            <li><i class="fa fa-file-text-o"></i> Datos</li>
+        </ol>
+    </div>
+</div>
+<form method="post" autocomplete="off">
+	{% csrf_token %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Complete los datos requeridos</h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<legend>Datos Generales de Receta</legend>
+				{% if receta_medica_errores %}
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="alert alert-danger">{{ receta_medica_errores }}</div>
+					</div>
+				</div>
+				{% endif %}
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form2.Consulta.name}}">{{form2.Consulta.label}}</label>
+							{{form2.Consulta}}
+						</div>
+					</div>
+				 </div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form2.fechaEmisionReceta.name}}">{{form2.fechaEmisionReceta.label}}</label>
+							{{form2.fechaEmisionReceta}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form2.observacionesReceta.name}}">{{form2.observacionesReceta.label}}</label>
+							{{form2.observacionesReceta}}
+						</div>
+					</div>
+				</div>
+				<legend>Datos de Medicamentos de Receta</legend>
+				{% if receta_medicamento_errores %}
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="alert alert-danger">{{ receta_medicamento_errores }}</div>
+					</div>
+				</div>
+				{% endif %}
+
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form.CatalogoMedicamento.name}}">{{form.CatalogoMedicamento.label}}</label>
+							{{form.CatalogoMedicamento}}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="form-group">
+							<label for="{{form.dosis.name}}">{{form.dosis.label}}</label>
+							{{form.dosis}}
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" type="submit">
+			<i class="fa fa-floppy-o"></i> Guardar
+		</button>
+		<a href="{% url 'expediente:listado_recetas' %}" class="btn btn-danger">
+			<i class="fa fa-times-circle"></i> Cancelar
+		</a>
+	</div>
+</form>
+{% endblock %}

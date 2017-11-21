@@ -3,7 +3,6 @@ from django.contrib.auth.views import login_required
 from apps.expediente.views.GeneralView import index, municipios
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam,listadoArchivoResultados
 from apps.expediente.views.SignoVitalView import ListadoSignosVitales, AgregarSignoVital, ModificarSignoVital, eliminarSignoVital
-from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 from apps.expediente.views.ExpedienteView import agregarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate
@@ -15,6 +14,11 @@ from apps.expediente.views.CatalogoTipoClinicaView import ListadoTipoClinicas, A
 from apps.expediente.views.ClinicaView import ListadoClinica, AgregarClinica, ModificarClinica, eliminarClinica
 from apps.expediente.views.ConsultaView import ListadoConsultas, RegistrarConsulta, ModificarConsulta, eliminarConsulta
 from apps.expediente.views.TurnoView import ListadoTurnos, AgregarTurno, ModificarTurno, eliminarTurno
+from apps.expediente.views.OrdenExamenMedicoView import ListadoOrdenesExamen, AgregarOrdenExamen, ModificarOrdenExamen, eliminarOrdenExamen
+from apps.expediente.views.ReferenciaMedicaView import listadoReferenciaMedica, registrarReferenciaMedica, ModificarReferenciaMedica, eliminarReferencia
+from apps.expediente.views.ConstanciaMedicaView import ListadoConstanciasMedicas, AgregarConstanciaMedica, ModificarConstanciaMedica, eliminarConstancia
+from apps.expediente.views.IncapacidadMedicaView import ListadoIncapacidadesMedicas, AgregarIncapacidadMedica, ModificarIncapacidadMedica, eliminarIncapacidad
+from apps.expediente.views.RecetaMedicaView import ListadoRecetasMedicas, AgregarRecetaMedica, ModificarRecetaMedica, eliminarReceta
 
 urlpatterns = [
     # General
@@ -36,8 +40,10 @@ urlpatterns = [
     url(r'^signos-vitales/eliminar/(?P<id>\d+)/$', login_required(eliminarSignoVital), name='eliminar_signo_vital'),
 
     # ReferenciaMedica
-    url(r'^referencias/listado$', login_required(listadoReferenciaMedica), name='listado_referencia_medica'),
-    url(r'^referencias/registrar$', login_required(registrarReferenciaMedica), name='registrar_referencia_medica'),
+    url(r'^referencias/agregar$', login_required(registrarReferenciaMedica.as_view()), name='registrar_referencia_medica'),
+    url(r'^referencias/listado$', login_required(listadoReferenciaMedica.as_view()), name='listado_referencia_medica'),
+    url(r'^referencias/modificar/(?P<pk>\d+)/$', login_required(ModificarReferenciaMedica.as_view()), name='modificar_referencia'),
+    url(r'^referencias/eliminar/(?P<id>\d+)/$', login_required(eliminarReferencia), name='eliminar_referencia'),
 
     # Expediente
     url(r'^expedientes/agregar$', login_required(agregarExpediente), name='agregar_expediente'),
@@ -102,6 +108,30 @@ urlpatterns = [
     url(r'^turnos/listado$', login_required(ListadoTurnos.as_view()), name='listado_turnos'),
     url(r'^turnos/modificar/(?P<pk>\d+)/$', login_required(ModificarTurno.as_view()), name='modificar_turno'),
     url(r'^turnos/eliminar/(?P<id>\d+)/$', login_required(eliminarTurno), name='eliminar_turno'),
+
+    # OrdenExamen
+    url(r'^examenes/ordenes/registrar$', login_required(AgregarOrdenExamen.as_view()), name='agregar_orden_examen'),
+    url(r'^examenes/ordenes/listado$', login_required(ListadoOrdenesExamen.as_view()), name='listado_ordenes_examen'),
+    url(r'^examenes/ordenes/modificar/(?P<pk>\d+)/$', login_required(ModificarOrdenExamen.as_view()), name='modificar_orden_examen'),
+    url(r'^examenes/ordenes/eliminar/(?P<id>\d+)/$', login_required(eliminarOrdenExamen), name='eliminar_orden_examen'),
+
+    # ConstanciaMedica
+    url(r'^constancias/agregar$', login_required(AgregarConstanciaMedica.as_view()), name='agregar_constancia'),
+    url(r'^constancias/listado$', login_required(ListadoConstanciasMedicas.as_view()), name='listado_constancias'),
+    url(r'^constancias/modificar/(?P<pk>\d+)/$', login_required(ModificarConstanciaMedica.as_view()), name='modificar_constancia'),
+    url(r'^constancias/eliminar/(?P<id>\d+)/$', login_required(eliminarConstancia), name='eliminar_constancia'),
+
+    # IncapacidadMedica
+    url(r'^incapacidad/agregar$', login_required(AgregarIncapacidadMedica.as_view()), name='agregar_incapacidad'),
+    url(r'^incapacidad/listado$', login_required(ListadoIncapacidadesMedicas.as_view()), name='listado_incapacidades'),
+    url(r'^incapacidad/modificar/(?P<pk>\d+)/$', login_required(ModificarIncapacidadMedica.as_view()), name='modificar_incapacidad'),
+    url(r'^incapacidad/eliminar/(?P<id>\d+)/$', login_required(eliminarIncapacidad), name='eliminar_incapacidad'),
+
+    # RecetaMedica
+    url(r'^recetas/agregar$', login_required(AgregarRecetaMedica.as_view()), name='agregar_receta'),
+    url(r'^recetas/listado$', login_required(ListadoRecetasMedicas.as_view()), name='listado_recetas'),
+    url(r'^recetas/modificar/(?P<pk>\d+)/$', login_required(ModificarRecetaMedica.as_view()), name='modificar_receta'),
+    url(r'^recetas/eliminar/(?P<id>\d+)/$', login_required(eliminarReceta), name='eliminar_recetas'),
 ]
 
 # Para acceder a una vista, desde la barra de direcciones del navegador digitar:
