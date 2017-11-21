@@ -23,8 +23,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'otap%8pj-w!bo99ku-ewke7b&0v5&06+dj_xuv04i)j1_p_8_m'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -129,3 +127,35 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 LOGIN_REDIRECT_URL = reverse_lazy('expediente:inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('iniciar_sesion')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+if DEBUG:
+   INTERNAL_IPS = ('127.0.0.1', 'localhost',)
+   MIDDLEWARE += (
+       'debug_toolbar.middleware.DebugToolbarMiddleware',
+   )
+
+   INSTALLED_APPS += (
+       'debug_toolbar',
+   )
+
+   DEBUG_TOOLBAR_PANELS = [
+       'debug_toolbar.panels.versions.VersionsPanel',
+       'debug_toolbar.panels.timer.TimerPanel',
+       'debug_toolbar.panels.settings.SettingsPanel',
+       'debug_toolbar.panels.headers.HeadersPanel',
+       'debug_toolbar.panels.request.RequestPanel',
+       'debug_toolbar.panels.sql.SQLPanel',
+       'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+       'debug_toolbar.panels.templates.TemplatesPanel',
+       'debug_toolbar.panels.cache.CachePanel',
+       'debug_toolbar.panels.signals.SignalsPanel',
+       'debug_toolbar.panels.logging.LoggingPanel',
+       'debug_toolbar.panels.redirects.RedirectsPanel',
+   ]
+
+   DEBUG_TOOLBAR_CONFIG = {
+       'INTERCEPT_REDIRECTS': False,
+   }
