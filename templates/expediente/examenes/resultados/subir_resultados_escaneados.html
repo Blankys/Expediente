@@ -14,5 +14,10 @@
 	{% csrf_token %}
 	{{ form.as_p}}
 	<input type="submit" name="" value="Subir">
+     <div class="dropdown pull-right">
+            <a href="listado_archivos" class="btn btn-success">
+                <i class=""></i> Ver Listado Archivos
+            </a>
+    </div>
 </form>
 {% endblock%}

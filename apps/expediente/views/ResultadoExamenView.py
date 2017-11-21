@@ -79,3 +79,12 @@ class actualizarRegResultExam(UpdateView):
 			return HttpResponseRedirect(self.get_success_url())
 		else:
 			return HttpResponseRedirect(self.get_success_url())
+
+class listadoArchivoExamenes(ListView):
+	model = ArchivoResultadoExamen
+	template_name = 'expediente/examenes/resultados/listado_archivos.html'
+
+	
+class listadoArchivoResultados(ListView):
+	model = ArchivoResultadoExamen
+	template_name = 'expediente/examenes/resultados/listado_archivos.html'

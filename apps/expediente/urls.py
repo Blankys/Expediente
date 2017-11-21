@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from apps.expediente.views.GeneralView import index, municipios
-from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam
+from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam,listadoArchivoResultados
 from apps.expediente.views.SignoVitalView import ListadoSignosVitales, AgregarSignoVital, ModificarSignoVital, eliminarSignoVital
 from apps.expediente.views.ReferenciaMedicaView import registrarReferenciaMedica, listadoReferenciaMedica
 from apps.expediente.views.ExpedienteView import agregarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^examenes/resultados/buscar$', buscarResultadoExamen.as_view(template_name = 'expediente/examenes/buscar.html'), name = 'buscar_examen'),
     url(r'^examenes/resultados/subir$', uploadResultadosEscaneados.as_view(), name='resultados_escaneados'),
      url(r'^examenes/resultados/modificar/(?P<pk>\d+)$', actualizarRegResultExam.as_view(), name = 'modificar_examen'),
+     url(r'^examenes/resultados/listado_archivos$', listadoArchivoResultados.as_view(), name = 'listado_archivos'),
 
     # SignoVital
     url(r'^signos-vitales/agregar$', AgregarSignoVital.as_view(), name = 'agregar_signo_vital'),
