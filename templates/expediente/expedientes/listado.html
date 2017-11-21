@@ -44,6 +44,7 @@
 					<td>{{ expediente.fechaElaboracion }}</td>
 					<td>
 						<span class="btn-group">
+							<a class="btn btn-success btn-sm" href="{% url 'expediente:reporte_expediente' expediente.id %}"><i class="fa fa-user-md"></i></a>
 							<a class="btn btn-primary btn-sm" href="{% url 'expediente:modificar_expediente' expediente.id %}"><i class="fa fa-pencil"></i></a>
 							<a class="btn btn-danger btn-sm EliminarRegistro" data-url="{% url 'expediente:eliminar_expediente' expediente.id %}"><i class="fa fa-trash"></i></a>
 						</span>

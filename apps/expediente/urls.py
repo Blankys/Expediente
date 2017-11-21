@@ -3,7 +3,7 @@ from django.contrib.auth.views import login_required
 from apps.expediente.views.GeneralView import index, municipios, accesoDenegado
 from apps.expediente.views.ResultadoExamenView import respuestaRegistrarResultadoExamen, listadoExamenes, buscarResultadoExamen,uploadResultadosEscaneados,actualizarRegResultExam,listadoArchivoResultados
 from apps.expediente.views.SignoVitalView import ListadoSignosVitales, AgregarSignoVital, ModificarSignoVital, eliminarSignoVital
-from apps.expediente.views.ExpedienteView import agregarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente
+from apps.expediente.views.ExpedienteView import agregarExpediente, listadoExpedientes, modificarExpediente, eliminarExpediente, ReporteExpediente
 from apps.expediente.views.ExamenMedicoView import listadoTipoExamen, listadoSolicitudExamen, nuevoTipoExamen
 from apps.expediente.views.AlergiaView import AlergiaCreate, AlergiaList, AlergiaUpdate
 from apps.expediente.views.CatalogoEnfermedadView import ListadoEnfermedades, AgregarEnfermedad, ModificarEnfermedad, eliminarEnfermedad
@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^expedientes/listado$', login_required(listadoExpedientes.as_view()), name='listado_expedientes'),
     url(r'^expedientes/modificar/(?P<id>\d+)/$', login_required(modificarExpediente), name='modificar_expediente'),
     url(r'^expedientes/eliminar/(?P<id>\d+)/$', login_required(eliminarExpediente), name='eliminar_expediente'),
+    url(r'^expedientes/reporte/(?P<pk>\d+)/$', login_required(ReporteExpediente.as_view()), name='reporte_expediente'),
 
     # TipoExamen
     url(r'^examenes/tipos/listado$', login_required(listadoTipoExamen.as_view()), name='listado_tipo_examen'),

@@ -75,8 +75,7 @@ class Empleado(models.Model):
     tiempoServicio = models.IntegerField()
     jVPM = models.IntegerField(null=True, blank=True)
     Persona = models.OneToOneField(Persona, null=False, blank=False, on_delete=models.CASCADE)
-    CatalogoEspecialidadEmpleado = models.ForeignKey(CatalogoEspecialidadEmpleado, null=True, blank=True,
-                                                     on_delete=models.CASCADE)
+    CatalogoEspecialidadEmpleado = models.ForeignKey(CatalogoEspecialidadEmpleado, null=True, blank=True, on_delete=models.CASCADE)
     Clinica = models.ForeignKey(Clinica, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -171,6 +170,27 @@ class SignoVital(models.Model):
     def __str__(self):
         return '{}'.format(self.Expediente.Paciente)
 
+    def PresionArterial(self):
+        return self.presionArterial
+
+    def FrecuenciaCardiaca(self):
+        return self.frecCardiaca
+
+    def FrecuenciaRespiratoria(self):
+        return self.frecRespiratoria
+
+    def Peso(self):
+        return self.peso
+
+    def Altura(self):
+        return self.altura
+
+    def FechaMedicion(self):
+        return self.fechaMedicion
+
+    def Enfermera(self):
+        return self.Empleado
+
 
 class ContactoEmergencia(Persona):
     PARENTESCO = (
@@ -188,6 +208,12 @@ class ContactoEmergencia(Persona):
     def __str__(self):
         return '{}'.format(self.Persona)
 
+    def Parentesco(self):
+        return '{}'.format(self.relacion)
+
+    def Nombre(self):
+        return '{}'.format(self.Persona)
+
 
 class CatalogoEnfermedad(models.Model):
     nombreEnfermedad = models.CharField(max_length=20)
@@ -198,9 +224,23 @@ class CatalogoEnfermedad(models.Model):
 
 
 class AntecedenteFamiliar(models.Model):
-    parentesco = models.CharField(max_length=20)
+    PARENTESCO = (
+        ('Padre', 'Padre'),
+        ('Madre', 'Madre'),
+        ('Hijo', 'Hijo'),
+        ('Hermano', 'Hermano'),
+        ('Otro', 'Otro')
+    )
+
+    parentesco = models.CharField(max_length=20, choices=PARENTESCO)
     CatalogoEnfermedad = models.ForeignKey(CatalogoEnfermedad, null=False, blank=False, on_delete=models.CASCADE)
     Expediente = models.ForeignKey(Expediente, null=False, blank=False, on_delete=models.CASCADE)
+
+    def Parentesco(self):
+        return '{}'.format(self.parentesco)
+
+    def Enfermedad(self):
+        return '{}'.format(self.CatalogoEnfermedad)
 
 
 # Modelos que conforman la consulta

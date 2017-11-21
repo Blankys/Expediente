@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from apps.expediente.permisos import Permisos
 from apps.expediente.requests.ExpedienteRequest import *
@@ -119,3 +119,7 @@ def eliminarExpediente(request, id):
         expediente.delete()
         return JsonResponse({'error': False, 'mensaje': 'Se eliminó la Expediente ' + expediente.Paciente.Persona.nombreCompleto()})
     return JsonResponse({'error': True, 'mensaje': 'No se pudo eliminar la Expediente ' + expediente.Paciente.Persona.nombreCompleto()})
+
+class ReporteExpediente(DetailView):
+    model = Expediente
+    template_name = 'expediente/expedientes/reporte.html'
