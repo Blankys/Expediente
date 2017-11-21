@@ -4,7 +4,7 @@ from django.shortcuts import render
 from apps.expediente.models import CatalogoMunicipio
 
 def index(request):
-    return render(request, 'expediente/inicio.html')
+    return render(request, 'expediente/general/inicio.html')
 
 def municipios(request):
     if not request.is_ajax():

@@ -376,4 +376,11 @@ line-height: 1.428571429;
    
 }
 
-
+.expediente-sys {
+	color: #fff;
+    background: #C90000;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+	padding: 20px 0 20px 0;
+}

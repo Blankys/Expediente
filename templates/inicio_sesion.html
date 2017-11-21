@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExpedienteSys - Iniciar Sesión</title>
+    <link href="{% static 'css/plugins/bootstrap/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/plugins/font-awesome/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/plugins/custom.css' %}" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/plugins/alertify/alertify.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/plugins/alertify/alertify.bootstrap.min.css' %}" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
+</head>
+<body style="background-color: #202020">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <h2 class="expediente-sys">ExpedienteSys</h2>
+                        <img src="{% static 'img/logo.png' %}" class="user-image img-responsive"/>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Ingrese sus credenciales para iniciar sesión</strong>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" autocomplete="off">
+	                        {% csrf_token %}
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Su nombre de usuario" name="username">
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="password" class="form-control" placeholder="Su contraseña" name="password">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/plugins/jquery/jquery-1.10.2.min.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins/alertify/alertify.min.js' %}"></script>
+    <script src="{% static 'js/personalizaciones/alertify.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% if mensaje_error %}
+            alertify.error("{{ mensaje_error }}");
+            {% endif %}
+            {% if mensaje_exito %}
+            alertify.success("{{ mensaje_exito }}");
+            {% endif %}
+        });
+    </script>
+</body>
+</html>
