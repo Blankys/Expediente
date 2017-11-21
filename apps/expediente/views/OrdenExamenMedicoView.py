@@ -2,7 +2,7 @@ from django.http import Http404
 from django.http import JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
-from apps.expediente.requests.ExamenMedicoRequest import OrdenExamenMedicoForm
+from apps.expediente.requests.OrdenExamenMedicoRequest import OrdenExamenMedicoForm
 from apps.expediente.models import OrdenExamenMedico
 
 class ListadoOrdenesExamen(ListView):
