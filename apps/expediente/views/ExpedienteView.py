@@ -66,7 +66,6 @@ def agregarExpediente(request):
         }
     )
 
-@user_passes_test(Permisos.solo_admin, login_url='/acceso-denegado')
 def modificarExpediente(request, id):
     expediente = Expediente.objects.get(id=id)
 
